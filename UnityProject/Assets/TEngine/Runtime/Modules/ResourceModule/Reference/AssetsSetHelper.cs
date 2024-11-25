@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace TEngine
 {
-    public static class AssetsSetHelper
+    public static partial class AssetsSetHelper
     {
         private static IResourceManager _resourceManager;
 
