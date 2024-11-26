@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FairyGUI;
 using UnityEngine;
 
 namespace TEngine
@@ -8,36 +9,111 @@ namespace TEngine
         private static Dictionary<string, int> _mImgRef = new Dictionary<string, int>();
 
         /// <summary>
-        /// 卸载从Resources加载的资源
+        /// 加载一张外部图片
         /// </summary>
-        public static void ReleaseImage(string imgName)
+        /// <param name="gloader"></param>
+        /// <param name="location"></param>
+        /// <param name="isAsync"></param>
+        /// <param name="packageName"></param>
+        /// <param name="isFromResources"></param>
+        /// <returns></returns>
+        public static void SetFuiTexture(GLoader gloader, string location, bool isAsync = false, string packageName = "", bool isFromResources = false)
         {
-            RemoveImgRef(imgName);
-        }
-
-        private static void AddImgRef(string imgName)
-        {
-            if (_mImgRef.ContainsKey(imgName))
+            if (gloader == null)
             {
-                int cnt = _mImgRef[imgName];
-                _mImgRef[imgName] = ++cnt;
+                return;
+            }
+
+            if (string.IsNullOrEmpty(location))
+            {
+                gloader.texture = null;
             }
             else
             {
-                _mImgRef.Add(imgName, 1);
+                if (isFromResources)
+                {
+                    Sprite sp = Resources.Load<Sprite>(location);
+                    if (sp != null)
+                    {
+                        AddImgRef(location);
+                        gloader.texture = new NTexture(sp.texture);
+                    }
+                }
+                else
+                {
+                    if (!isAsync)
+                    {
+                        if (gloader != null && gloader.displayObject != null && gloader.displayObject.gameObject != null)
+                        {
+                            Sprite sp = GameModule.Resource.LoadAsset<Sprite>(location, packageName);
+                            if (sp != null)
+                            {
+                                AddImgRef(location);
+                                gloader.texture = new NTexture(sp.texture);
+                                AssetsReference.Ref(sp, gloader.displayObject.gameObject);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        GameModule.Resource.LoadAsset<Sprite>(location, sp =>
+                        {
+                            if (sp != null)
+                            {
+                                //如果图片加载完毕后对象已经不存在，则不进行处理
+                                if (gloader == null || gloader.displayObject == null || gloader.displayObject.gameObject == null)
+                                {
+                                    GameModule.Resource.UnloadAsset(sp);
+                                    sp = null;
+                                    return;
+                                }
+                                else
+                                {
+                                    AddImgRef(location);
+                                    gloader.texture = new NTexture(sp.texture);
+                                    AssetsReference.Ref(sp, gloader.displayObject.gameObject);
+                                }
+                            }
+                        }, packageName);
+                    }
+                }
             }
         }
 
-        private static void RemoveImgRef(string imgName)
+        /// <summary>
+        /// 卸载从Resources加载的资源
+        /// </summary>
+        public static void ReleaseImage(string location)
         {
-            if (_mImgRef.ContainsKey(imgName))
+            RemoveImgRef(location);
+        }
+
+        private static void AddImgRef(string location)
+        {
+            if (!string.IsNullOrEmpty(location))
             {
-                int cnt = _mImgRef[imgName];
+                if (_mImgRef.ContainsKey(location))
+                {
+                    int cnt = _mImgRef[location];
+                    _mImgRef[location] = ++cnt;
+                }
+                else
+                {
+                    _mImgRef.Add(location, 1);
+                }
+            }
+        }
+
+        private static void RemoveImgRef(string location)
+        {
+            if (_mImgRef.ContainsKey(location))
+            {
+                int cnt = _mImgRef[location];
                 cnt -= 1;
                 if (cnt <= 0)
                 {
-                    _mImgRef.Remove(imgName);
-                    Sprite sp = Resources.Load<Sprite>(imgName);
+                    _mImgRef.Remove(location);
+                    Sprite sp = Resources.Load<Sprite>(location);
                     if (sp != null)
                     {
                         Resources.UnloadAsset(sp);
@@ -45,7 +121,7 @@ namespace TEngine
                 }
                 else
                 {
-                    _mImgRef[imgName] = cnt;
+                    _mImgRef[location] = cnt;
                 }
             }
         }

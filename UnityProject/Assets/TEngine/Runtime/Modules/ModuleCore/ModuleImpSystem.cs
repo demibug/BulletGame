@@ -88,6 +88,25 @@ namespace TEngine
 
             return GetModule(moduleType) as T;
         }
+        
+        public static T GetModuleNotSubString<T>() where T : class
+        {
+            Type module = typeof(T);
+
+            if (module.FullName != null && !module.FullName.StartsWith(ModuleRootNameSpace, StringComparison.Ordinal))
+            {
+                throw new GameFrameworkException(Utility.Text.Format("You must get a Framework module, but '{0}' is not.", module.FullName));
+            }
+
+            string moduleName = Utility.Text.Format("{0}.{1}", module.Namespace, module.Name);
+            Type moduleType = Type.GetType(moduleName);
+            if (moduleType == null)
+            {
+                throw new GameFrameworkException(Utility.Text.Format("Can not find Game Framework module type '{0}'.", moduleName));
+            }
+
+            return GetModule(moduleType) as T;
+        }
 
         /// <summary>
         /// 获取游戏框架模块。

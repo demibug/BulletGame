@@ -67,7 +67,7 @@ namespace TEngine
                 DontDestroyOnLoad(m_InstanceRoot.parent != null ? m_InstanceRoot.parent : m_InstanceRoot);
             }
 
-            m_InstanceRoot.gameObject.layer = LayerMask.NameToLayer("UI");
+            m_InstanceRoot.gameObject.layer = LayerMask.NameToLayer("UUI");
             UIRootStatic = m_InstanceRoot;
             
             switch (GameModule.Debugger.ActiveWindowType)

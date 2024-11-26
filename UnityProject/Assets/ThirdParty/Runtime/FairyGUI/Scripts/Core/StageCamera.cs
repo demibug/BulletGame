@@ -47,7 +47,7 @@ namespace FairyGUI
         [NonSerialized]
         public static int screenSizeVer = 1;
 
-        public const string Name = "Stage Camera";
+        public const string Name = "FUI Camera";
         public const string LayerName = "UI";
 
         public static float DefaultCameraSize = 5;

@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using FairyGUI;
+using UnityEngine;
+using Image = UnityEngine.UI.Image;
 
 namespace TEngine
 {
@@ -143,6 +144,15 @@ namespace TEngine
                     AssetsReference.Ref(material, meshRenderer.gameObject);
                 }, packageName);
             }
+        }
+
+        #endregion
+
+        #region Fui
+
+        public static void SetFuiTexture(this GLoader gloader, string location, bool isAsync = false, string packageName = "", bool isFromResources = false)
+        {
+            FUIExtension.SetFuiTexture(gloader, location, isAsync, packageName, isFromResources);
         }
 
         #endregion

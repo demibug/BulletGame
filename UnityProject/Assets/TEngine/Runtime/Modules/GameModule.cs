@@ -90,6 +90,12 @@ namespace TEngine
         private static UIModule _ui;
         
         /// <summary>
+        /// 获取FUI模块
+        /// </summary>
+        public static FUIModule FUI => _fui ??= Get<FUIModule>();
+        private static FUIModule _fui;
+        
+        /// <summary>
         /// 获取多语言模块。
         /// </summary>
         public static LocalizationModule Localization => _localization ??= Get<LocalizationModule>();
@@ -168,6 +174,7 @@ namespace TEngine
             _audio = null;
             _setting = null;
             _ui = null;
+            _fui = null;
             _localization = null;
             _scene = null;
             _timer = null;

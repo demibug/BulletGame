@@ -9,6 +9,10 @@
         /// 默认资源加载优先级。
         /// </summary>
         internal const int DefaultPriority = 0;
+
+        public const int DesignWidth = 1920;
+        public const int DesignHeight = 1080;
+
     }
     
     /// <summary>
