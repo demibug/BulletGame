@@ -1,16 +1,14 @@
 {
-    "name": "GameProto",
+    "name": "GameFgui",
     "rootNamespace": "",
     "references": [
-        "GUID:d8b63aba1907145bea998dd612889d6b",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:e34a5702dd353724aa315fb8011f08c3",
         "GUID:24c092aee38482f4e80715eaa8148782",
-        "GUID:cbb0d51b565003841ae81cdbaf747114"
+        "GUID:6cf17d077cffc804d95086f709ee30f3"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": true,
+    "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
