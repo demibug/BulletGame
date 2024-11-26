@@ -1,7 +1,7 @@
-using System;
-using System.Text;
 using GameBase;
 using GameData;
+using System;
+using System.Text;
 using TEngine;
 using UnityEngine;
 
@@ -85,7 +85,7 @@ namespace GameNetwork
             _mStringBuilder.Append("Request ");
             _mStringBuilder.Append(route);
             _mStringBuilder.Append(" : ");
-            GameLog.LogColor(_mStringBuilder.ToString(), msg, Color.green, Color.white);
+            Log.ColorLog(_mStringBuilder.ToString(), msg, Color.green, Color.white);
             long sendTime = GTimer.Instance.UtcTimeSec();
             m_mainChannel?.Request<TRespone>(route, msg, (TRespone) =>
             {
@@ -93,7 +93,7 @@ namespace GameNetwork
                 _mStringBuilder.Append("Respone ");
                 _mStringBuilder.Append(route);
                 _mStringBuilder.Append(" : ");
-                GameLog.LogColor(_mStringBuilder.ToString(), TRespone, Color.cyan, Color.white);
+                Log.ColorLog(_mStringBuilder.ToString(), TRespone, Color.cyan, Color.white);
                 action(TRespone);
                 long useTime = GTimer.Instance.UtcTimeSec() - sendTime;
                 if (useTime > 2)
@@ -143,7 +143,7 @@ namespace GameNetwork
             _mStringBuilder.Append("Notify ");
             _mStringBuilder.Append(route);
             _mStringBuilder.Append(" : ");
-            GameLog.LogColor(_mStringBuilder.ToString(), msg, Color.green, Color.white);
+            Log.ColorLog(_mStringBuilder.ToString(), msg, Color.green, Color.white);
             m_mainChannel?.Notify(route, msg);
         }
 
@@ -190,7 +190,7 @@ namespace GameNetwork
                 _mStringBuilder.Append("OnRoute ");
                 _mStringBuilder.Append(route.ToString());
                 _mStringBuilder.Append(" : ");
-                GameLog.LogColor(_mStringBuilder.ToString(), data, Color.cyan, Color.white);
+                Log.ColorLog(_mStringBuilder.ToString(), data, Color.cyan, Color.white);
                 action(data);
             });
         }

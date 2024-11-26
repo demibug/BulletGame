@@ -5,7 +5,7 @@ namespace TEngine
     /// <summary>
     /// 日志工具集。
     /// </summary>
-    public static class Log
+    public static partial class Log
     {
         /// <summary>
         /// 打印调试级别日志，用于记录调试类日志信息。

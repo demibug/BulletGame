@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
+
 using GameData;
 using GameNetwork.ShortConnection;
-using Protos;
+using System;
+using System.Collections.Generic;
 using TEngine;
 using UnityEngine;
 
@@ -202,8 +202,8 @@ namespace GameNetwork
 
         private void OnPushRespone(byte[] data)
         {
-            PushMessage pushMsg = _protobufSerializer.Decode<PushMessage>(data);
-            _eventManager.InvokeOnEvent(pushMsg);
+            //PushMessage pushMsg = _protobufSerializer.Decode<PushMessage>(data);
+            //_eventManager.InvokeOnEvent(pushMsg);
         }
 
         public void OnNetworkEvent(NetworkChannelStates state, string error)

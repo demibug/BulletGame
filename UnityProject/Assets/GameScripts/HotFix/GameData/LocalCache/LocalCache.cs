@@ -1,16 +1,14 @@
+using GameData.GDefine;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using GameBase;
-using GameConfig;
-using GameData.GDefine;
 using TEngine;
 using UnityEngine;
 using Language = GameData.GDefine.Language;
 
 namespace GameData
 {
-    public static class GLocalCache
+    public static class LocalCache
     {
         private const string KEY_PC_LOGIN_DATA = "pcLoginData"; //当前登陆的用户信息默认信息
         private const string KEY_ALL_USER = "allUserKeys";
@@ -85,7 +83,7 @@ namespace GameData
         public static UserSetting GetCurrentSetting()
         {
             UserSetting setting = GetUserSetting(m_currentUser);
-            if(setting == null)
+            if (setting == null)
             {
                 return defSetting;
             }
@@ -116,10 +114,10 @@ namespace GameData
         /// </summary>
         public static void SetData_RedNoteDay(int RedNoteNotify)
         {
-            if(defSetting.RedNoteDayDic == null) defSetting.RedNoteDayDic = new Dictionary<int,long>();
+            if (defSetting.RedNoteDayDic == null) defSetting.RedNoteDayDic = new Dictionary<int, long>();
             if (!defSetting.RedNoteDayDic.ContainsKey(RedNoteNotify))
             {
-                defSetting.RedNoteDayDic.Add(RedNoteNotify,GTimer.Instance.ServerTime);
+                defSetting.RedNoteDayDic.Add(RedNoteNotify, GTimer.Instance.ServerTime);
                 UpdateDefaultSetting();
                 UpdateUserSetting();
             }
@@ -129,9 +127,9 @@ namespace GameData
         /// 获取每日红点本地缓存
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<int,long> GetData_RedNoteDay()
+        public static Dictionary<int, long> GetData_RedNoteDay()
         {
-            if(defSetting.RedNoteDayDic == null) return new Dictionary<int,long>();
+            if (defSetting.RedNoteDayDic == null) return new Dictionary<int, long>();
             return defSetting.RedNoteDayDic;
         }
 
@@ -170,7 +168,7 @@ namespace GameData
                 WriteObject(KEY_PC_LOGIN_DATA, defSetting);
 
                 //更新记载的玩家信息
-                UpdateUserSetting(strUserName, strUserName, strServerId, language, hasMusiic, hasSound, hasEmoji,LastEmojiItemId,RedNoteDayDic);
+                UpdateUserSetting(strUserName, strUserName, strServerId, language, hasMusiic, hasSound, hasEmoji, LastEmojiItemId, RedNoteDayDic);
             }
         }
 
@@ -197,7 +195,7 @@ namespace GameData
                 case ISO_639_1.English:
                     return Language.EN;
 
-                case ISO_639_1.China:
+                case ISO_639_1.Chinese:
                     return Language.CN;
 
                 default:
@@ -215,10 +213,10 @@ namespace GameData
             string strKey = GetFUIBrance(lan);
             if (strKey.Length > 0)
             {
-                if (TableDataSystem.Instance.TablesData.IsLanguageOpen(strKey))
-                {
-                    return lan;
-                }
+                //if (TableDataSystem.Instance.TablesData.IsLanguageOpen(strKey))
+                //{
+                //    return lan;
+                //}
             }
             return Language.AR;
         }
@@ -231,17 +229,17 @@ namespace GameData
             string currentCultureName = CultureInfo.CurrentCulture.Name;
 
             // 打印结果
-            GameLog.DebugInfo("当前UI文化名称: " + currentUICultureName);
-            GameLog.DebugInfo("当前系统文化名称: " + currentCultureName);
+            Log.Info("当前UI文化名称: " + currentUICultureName);
+            Log.Info("当前系统文化名称: " + currentCultureName);
 
             // 根据需要，你可能只想获取语言代码（例如"zh-CN", "en-US"）
             string languageCode = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            GameLog.DebugInfo("当前语言代码: " + languageCode);
+            Log.Info("当前语言代码: " + languageCode);
 
             // 如果需要更详细的区域信息，也可以使用Name属性
             // 注意，这个会包含国家和地区的代码（例如"zh-CN", "en-US"）
             string detailedCultureName = CultureInfo.CurrentCulture.Name;
-            GameLog.DebugInfo("详细的当前文化名称: " + detailedCultureName);
+            Log.Info("详细的当前文化名称: " + detailedCultureName);
         }
 
         public static UserSetting UpdateUserSetting(string userAccountId,
@@ -274,7 +272,7 @@ namespace GameData
 
         public static void UpdateUserSetting()
         {
-            UserSetting setting = GetUserSetting(DataSystem.Instance.Player.userAccountId);
+            UserSetting setting = GetUserSetting(DataSystem.Instance.Player.accountId);
             setting.userName = defSetting.userName;
             setting.serverId = defSetting.serverId;
             setting.hasMusic = defSetting.hasMusic;
@@ -282,7 +280,7 @@ namespace GameData
             setting.hasEmoji = defSetting.hasEmoji;
             setting.LastEmojiItemId = defSetting.LastEmojiItemId;
             setting.RedNoteDayDic = defSetting.RedNoteDayDic;
-            string userKey = KEY_USER_HEAD + DataSystem.Instance.Player.userAccountId;
+            string userKey = KEY_USER_HEAD + DataSystem.Instance.Player.accountId;
             WriteObject(userKey, setting);
         }
 
@@ -309,26 +307,26 @@ namespace GameData
                 }
 
                 //根据 Setting 表中的项，为新用户设置初始值
-                List<SettingClass> lstSetting = TableDataSystem.Instance.TablesData.GetAllSettingConfigList();
-                if(lstSetting != null)
-                {
-                    for(int i = 0; i < lstSetting.Count; i++)
-                    {
-                        var cfg = lstSetting[i];
-                        if (cfg.Id == (int)OptionSettingType.Music)
-                        {
-                            setting.hasMusic = (cfg.DefaultOpen == 1);
-                        }
-                        else if (cfg.Id == (int)OptionSettingType.Sound)
-                        {
-                            setting.hasSound = (cfg.DefaultOpen == 1);
-                        }
-                        else if (cfg.Id == (int)OptionSettingType.Emoji)
-                        {
-                            setting.hasEmoji = (cfg.DefaultOpen == 1);
-                        }
-                    }
-                }
+                //List<SettingClass> lstSetting = TableDataSystem.Instance.TablesData.GetAllSettingConfigList();
+                //if (lstSetting != null)
+                //{
+                //    for (int i = 0; i < lstSetting.Count; i++)
+                //    {
+                //        var cfg = lstSetting[i];
+                //        if (cfg.Id == (int)OptionSettingType.Music)
+                //        {
+                //            setting.hasMusic = (cfg.DefaultOpen == 1);
+                //        }
+                //        else if (cfg.Id == (int)OptionSettingType.Sound)
+                //        {
+                //            setting.hasSound = (cfg.DefaultOpen == 1);
+                //        }
+                //        else if (cfg.Id == (int)OptionSettingType.Emoji)
+                //        {
+                //            setting.hasEmoji = (cfg.DefaultOpen == 1);
+                //        }
+                //    }
+                //}
 
                 dicSetting.Add(userKey, setting);
 
@@ -436,7 +434,7 @@ namespace GameData
                 defSetting.branch = GetFUIBrance(lan);
 
                 WriteObject(KEY_PC_LOGIN_DATA, defSetting);
-                WriteData(GameDefine.LauncherSettingLanguage, (int)lan);
+                WriteData(Constant.LauncherSettingLanguage, (int)lan);
 
                 var uSetting = GetUserSetting(defSetting.accountId);
                 if (uSetting != null)

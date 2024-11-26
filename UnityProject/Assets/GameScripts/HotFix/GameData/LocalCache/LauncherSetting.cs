@@ -4,7 +4,7 @@ namespace GameData
 {
     public static class LauncherSetting
     {
-        private static string LauncherSettingStage => GameDefine.LauncherSettingStage;
+        private static string LauncherSettingStage => Constant.LauncherSettingStage;
 
         public static int CurrentStage
         {

@@ -16,7 +16,7 @@ namespace PlayCore
                 {
                     if (_dicImgUrlCache.ContainsKey(loader))
                     {
-                        FGUIExtension.ReleaseImage(_dicImgUrlCache[loader]);
+                        FUIExtension.ReleaseImage(_dicImgUrlCache[loader]);
                     }
                     _dicImgUrlCache.Remove(loader);
                 }
@@ -27,7 +27,7 @@ namespace PlayCore
                         string oldUrl = _dicImgUrlCache[loader];
                         if (oldUrl != imgName)
                         {
-                            FGUIExtension.ReleaseImage(oldUrl);
+                            FUIExtension.ReleaseImage(oldUrl);
                         }
                         _dicImgUrlCache[loader] = imgName;
                     }
@@ -37,7 +37,7 @@ namespace PlayCore
                     }
                 }
 
-                FGUIExtension.SetUIImage(loader, imgName, isFromResources);
+                loader.SetFuiTexture(imgName, isFromResources);
             }
         }
 
@@ -46,7 +46,7 @@ namespace PlayCore
             foreach (KeyValuePair<GLoader, string> keyValuePair in _dicImgUrlCache)
             {
                 string res = keyValuePair.Value;
-                FGUIExtension.ReleaseImage(res);
+                FUIExtension.ReleaseImage(res);
             }
         }
 

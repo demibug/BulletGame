@@ -1,6 +1,6 @@
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
-using Cysharp.Threading.Tasks;
 using TEngine;
 using UnityEngine;
 
@@ -20,150 +20,27 @@ namespace GameRes
         /// 同步加载资源。
         /// </summary>
         /// <param name="location">资源的定位地址。</param>
-        /// <param name="needInstance">是否需要实例化。</param>
-        /// <param name="needCache">是否需要缓存。</param>
-        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        /// <param name="packageName">指定资源包的名称。不传使用默认资源包。</param>
         /// <typeparam name="T">要加载资源的类型。</typeparam>
         /// <returns>资源实例。</returns>
-        public T LoadAsset<T>(string location, bool needInstance = true, bool needCache = false,
-            string customPackageName = "") where T : UnityEngine.Object
+        public T LoadAsset<T>(string location, string packageName = "") where T : UnityEngine.Object
         {
-            return GameModule.Resource.LoadAsset<T>(location, needInstance, needCache, customPackageName);
-        }
-
-        /// <summary>
-        /// 同步加载资源。
-        /// </summary>
-        /// <param name="location">资源的定位地址。</param>
-        /// <param name="parent">父节点位置。</param>
-        /// <param name="needInstance">是否需要实例化。</param>
-        /// <param name="needCache">是否需要缓存。</param>
-        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
-        /// <typeparam name="T">要加载资源的类型。</typeparam>
-        /// <returns>资源实例。</returns>
-        public T LoadAsset<T>(string location, Transform parent, bool needInstance = true, bool needCache = false,
-            string customPackageName = "") where T : UnityEngine.Object
-        {
-            return GameModule.Resource.LoadAsset<T>(location, parent, needInstance, needCache, customPackageName);
+            return GameModule.Resource.LoadAsset<T>(location, packageName);
         }
 
         /// <summary>
         /// 异步加载资源。
         /// </summary>
-        /// <param name="location">资源的定位地址。</param>
+        /// <param name="location">资源定位地址。</param>
         /// <param name="cancellationToken">取消操作Token。</param>
-        /// <param name="needInstance">是否需要实例化。</param>
-        /// <param name="needCache">是否需要缓存。</param>
-        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包。</param>
-        /// <param name="parent">资源实例父节点。</param>
+        /// <param name="packageName">指定资源包的名称。不传使用默认资源包。</param>
         /// <typeparam name="T">要加载资源的类型。</typeparam>
         /// <returns>异步资源实例。</returns>
         public async UniTask<T> LoadAssetAsync<T>(string location, CancellationToken cancellationToken = default,
-            bool needInstance = true, bool needCache = false, string customPackageName = "", Transform parent = null)
-            where T : UnityEngine.Object
+            string packageName = "") where T : UnityEngine.Object
         {
-            // Log.Debug("async load : " + location);
-            T t = await GameModule.Resource.LoadAssetAsync<T>(location, cancellationToken, needInstance, needCache, customPackageName, parent);
-            if (t != null)
-            {
-                if (!_mLoadedAsset.ContainsKey(location))
-                {
-                    _mLoadedAsset.Add(location, true);
-                    bool isNeedDelay = false;
-                    GameObject go = null;
-                    if (typeof(T) == typeof(GameObject))
-                    {
-                        go = t as GameObject;
-                        isNeedDelay = true;
-                        // LoadMaterials(go);
-                    }
-                    else if (typeof(T) == typeof(Transform))
-                    {
-                        Transform trans = t as Transform;
-                        go = trans.gameObject;
-                        isNeedDelay = true;
-                        // LoadMaterials(trans.gameObject);
-                    }
 
-                    if (isNeedDelay)
-                    {
-                        Transform trans = go.transform;
-                        Animator animator = trans.GetComponent<Animator>();
-                        if (animator != null)
-                        {
-                            animator.enabled = false;
-                        }
-
-                        Animator[] anis = trans.GetComponentsInChildren<Animator>();
-                        if (anis != null)
-                        {
-                            foreach (var ani in anis)
-                            {
-                                ani.enabled = false;
-                            }
-                        }
-
-                        ParticleSystem[] pss = trans.GetComponentsInChildren<ParticleSystem>();
-                        if (pss != null)
-                        {
-                            foreach (var ps in pss)
-                            {
-                                if (ps.gameObject.activeInHierarchy)
-                                {
-                                    ps.Stop();
-                                }
-                            }
-                        }
-
-                        trans.localScale = Vector3.zero;
-                        await UniTask.WaitForSeconds(0.1f);
-                        trans.localScale = Vector3.zero;
-                        await UniTask.Yield();
-                        if (cancellationToken.IsCancellationRequested)
-                        {
-                            GameObject.Destroy(t);
-                            t = null;
-                        }
-                        else
-                        {
-                            if (trans != null)
-                            {
-                                if (animator != null)
-                                {
-                                    animator.enabled = true;
-                                }
-
-                                if (anis != null)
-                                {
-                                    foreach (var ani in anis)
-                                    {
-                                        if (ani != null)
-                                        {
-                                            ani.enabled = true;
-                                        }
-                                    }
-                                }
-
-                                if (pss != null)
-                                {
-                                    foreach (var ps in pss)
-                                    {
-                                        if (ps.gameObject.activeInHierarchy)
-                                        {
-                                            ps.Play();
-                                        }
-                                    }
-                                }
-
-                                trans.localScale = Vector3.one;
-                            }
-                        }
-                    }
-                }
-            }
-
-
-            return t;
+            return await GameModule.Resource.LoadAssetAsync<T>(location, cancellationToken, packageName);
         }
 
         // private void LoadMaterials(GameObject go)

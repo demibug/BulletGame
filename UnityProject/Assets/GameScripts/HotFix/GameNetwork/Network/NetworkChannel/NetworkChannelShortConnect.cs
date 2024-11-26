@@ -1,9 +1,8 @@
+using GameData;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net.Sockets;
-using GameData;
-using Protos;
 using TEngine;
 
 namespace GameNetwork
@@ -367,17 +366,17 @@ namespace GameNetwork
 
         public void SyncServerTime()
         {
-            ReqEmpty req = new ReqEmpty();
-            Request<RespSyncTime>(GRoute.GateGameSyncTime, req, OnSyncServerTime);
+            //ReqEmpty req = new ReqEmpty();
+            //Request<RespSyncTime>(GRoute.GateGameSyncTime, req, OnSyncServerTime);
         }
 
-        private void OnSyncServerTime(RespSyncTime msg)
-        {
-            if (msg != null)
-            {
-                GTimer.Instance.SetServerTime(msg.NowTime);
-            }
-        }
+        //private void OnSyncServerTime(RespSyncTime msg)
+        //{
+        //    if (msg != null)
+        //    {
+        //        GTimer.Instance.SetServerTime(msg.NowTime);
+        //    }
+        //}
 
         private void ConnectCallback()
         {

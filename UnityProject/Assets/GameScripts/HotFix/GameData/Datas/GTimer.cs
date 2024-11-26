@@ -1,5 +1,5 @@
-using System;
 using GameBase;
+using System;
 using TEngine;
 
 namespace GameData
@@ -49,7 +49,7 @@ namespace GameData
         {
             get
             {
-                return Math.Max(0,m_NextDayZeroFrefeshTime - ServerTime);
+                return Math.Max(0, m_NextDayZeroFrefeshTime - ServerTime);
             }
         }
 
@@ -155,24 +155,6 @@ namespace GameData
                 return (int)(Math.Floor((double)sec / 60));
             }
             return (int)sec;
-        }
-
-        /// <summary>
-        /// 转换特殊显示的字串文本
-        /// </summary>
-        /// <param name="time"></param>
-        /// <returns></returns>
-        public string GetTimeString(long time)
-        {
-            long sec = time - ServerTime;
-            if (sec < 0)
-            {
-                return GDefine.TimeDefine.GetHowLongTimeStr(-sec);
-            }
-            else
-            {
-                return GDefine.TimeDefine.GetLastTimeStr(sec);
-            }
         }
     }
 }

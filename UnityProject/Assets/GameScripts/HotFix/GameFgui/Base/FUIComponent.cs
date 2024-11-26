@@ -1,16 +1,16 @@
-using System.Collections.Generic;
 using FairyGUI;
 using GameFgui;
+using System.Collections.Generic;
 using TEngine;
 using UnityEngine;
 
 namespace GameLogic
 {
-    public class FUIComponent<T1> : IFUIComponent where T1 : IEUIBase, new()
+    public class FUIComponent<FuiType> : IFUIComponent where FuiType : IFUIConstructObject, new()
     {
         private Dictionary<GLoader, string> _dicImgUrlCache = new();
 
-        protected T1 m_view;
+        protected FuiType m_view;
 
         public GComponent ViewInput { get; private set; }
 
@@ -18,7 +18,7 @@ namespace GameLogic
         {
             ViewInput = view;
 
-            m_view = new T1(); // view?.BindNewWidget<T1>();
+            m_view = new FuiType(); // view?.BindNewWidget<T1>();
             m_view.ConstructObject(view);
 
             OnCreate();
@@ -297,7 +297,7 @@ namespace GameLogic
                 {
                     if (_dicImgUrlCache.ContainsKey(loader))
                     {
-                        FGUIExtension.ReleaseImage(_dicImgUrlCache[loader]);
+                        FUIExtension.ReleaseImage(_dicImgUrlCache[loader]);
                     }
                     _dicImgUrlCache.Remove(loader);
                 }
@@ -308,7 +308,7 @@ namespace GameLogic
                         string oldUrl = _dicImgUrlCache[loader];
                         if (oldUrl != imgName)
                         {
-                            FGUIExtension.ReleaseImage(oldUrl);
+                            FUIExtension.ReleaseImage(oldUrl);
                         }
                         _dicImgUrlCache[loader] = imgName;
                     }
@@ -317,8 +317,7 @@ namespace GameLogic
                         _dicImgUrlCache[loader] = imgName;
                     }
                 }
-
-                FGUIExtension.SetUIImage(loader, imgName, isFromResources);
+                loader.SetFuiTexture(imgName);
             }
         }
 
@@ -345,7 +344,7 @@ namespace GameLogic
             foreach (KeyValuePair<GLoader, string> keyValuePair in _dicImgUrlCache)
             {
                 string res = keyValuePair.Value;
-                FGUIExtension.ReleaseImage(res);
+                FUIExtension.ReleaseImage(res);
             }
         }
     }

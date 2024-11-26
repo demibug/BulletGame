@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using GameBase;
-using GameConfig;
 using TEngine;
 
 namespace GameData
@@ -39,6 +35,16 @@ namespace GameData
             public const string Japanese = "ja"; //日语
             public const string French = "fr"; //法语
             public const string German = "de"; //德语
+        }
+
+        /// <summary>
+        /// 当前使用的语言的索引值
+        /// </summary>
+        public enum Language
+        {
+            CN = Constant.GameLanguage.CN,
+            EN = Constant.GameLanguage.EN,
+            AR = Constant.GameLanguage.AR,
         }
     }
 }

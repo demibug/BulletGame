@@ -1,6 +1,6 @@
 using System;
 using System.Text;
-using GameBase;
+using TEngine;
 
 namespace GameNetwork
 {
@@ -147,7 +147,7 @@ namespace GameNetwork
             byte[] bytes = null;
             if (count == 0)
             {
-                GameLog.WarringInfo("Respone data size is 0 !!! ");
+                Log.Warning("Respone data size is 0 !!! ");
                 bytes = Array.Empty<byte>();
             }
             else

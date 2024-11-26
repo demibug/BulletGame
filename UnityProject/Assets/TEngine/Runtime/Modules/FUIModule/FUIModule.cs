@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using FairyGUI;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using YooAsset;
 
 namespace TEngine
 {
@@ -23,6 +22,13 @@ namespace TEngine
         private GRoot m_instanceRoot = null;
 
         private readonly List<FUIWindow> m_stack = new List<FUIWindow>(100);
+        public List<FUIWindow> Stack
+        {
+            get
+            {
+                return m_stack;
+            }
+        }
 
         public const int LAYER_DEEP = 2000;
         public const int WINDOW_DEEP = 100;
@@ -154,7 +160,7 @@ namespace TEngine
             AndroidJavaObject decorView = window.Call<AndroidJavaObject>("getDecorView");
             AndroidJavaObject rootView = decorView.Call<AndroidJavaObject>("getRootView");
             AndroidJavaObject displayCutout = rootView.Call<AndroidJavaObject>("getDisplayCutout");
-            if(displayCutout != null)
+            if (displayCutout != null)
             {
                 Debug.Log("This device has a notch!");
                 return true;
@@ -312,24 +318,46 @@ namespace TEngine
         {
             ShowUIImp(typeof(T), userDatas);
         }
-        
+
+        /// <summary>
+        /// 异步打开窗口。
+        /// </summary>
+        /// <param name="type">界面类型。</param>
+        /// <param name="userDatas">用户自定义数据。</param>
+        /// <returns>打开窗口操作句柄。</returns>
+        public void ShowUIAsync(System.Type type, params System.Object[] userDatas)
+        {
+            ShowUIImp(type, true, userDatas);
+        }
+
         /// <summary>
         /// 同步打开窗口。
         /// </summary>
         /// <typeparam name="T">窗口类。</typeparam>
         /// <param name="userDatas">用户自定义数据。</param>
         /// <returns>打开窗口操作句柄。</returns>
-        public void ShowUI<T>(params System.Object[] userDatas) where T : UIWindow
+        public void ShowUI<T>(params System.Object[] userDatas) where T : FUIWindow
         {
             ShowUIImp(typeof(T), userDatas);
         }
-        
+
+        /// <summary>
+        /// 同步打开窗口。
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="userDatas"></param>
+        /// <returns>打开窗口操作句柄。</returns>
+        public void ShowUI(System.Type type, params System.Object[] userDatas)
+        {
+            ShowUIImp(type, false, userDatas);
+        }
+
         /// <summary>
         /// 异步打开窗口。
         /// </summary>
         /// <param name="userDatas">用户自定义数据。</param>
         /// <returns>打开窗口操作句柄。</returns>
-        public async UniTask<FUIWindow> ShowUIAsyncAwait<T>(params System.Object[] userDatas) where T : UIWindow
+        public async UniTask<FUIWindow> ShowUIAsyncAwait<T>(params System.Object[] userDatas) where T : FUIWindow
         {
             return await ShowUIAwaitImp(typeof(T), true, userDatas);
         }
@@ -353,7 +381,7 @@ namespace TEngine
                 window.InternalLoad(OnWindowPrepare, userDatas);
             }
         }
-        
+
         private async UniTask<FUIWindow> ShowUIAwaitImp(System.Type type, params System.Object[] userDatas)
         {
             string windowName = type.FullName;
@@ -415,8 +443,8 @@ namespace TEngine
             OnSortWindowDepth(window.WindowLayer);
             OnSetWindowVisible();
         }
-        
-        public void HideUI<T>() where T : UIWindow
+
+        public void HideUI<T>() where T : FUIWindow
         {
             HideUI(typeof(T));
         }
@@ -435,12 +463,12 @@ namespace TEngine
                 CloseUI(type);
                 return;
             }
-            
+
             window.Visible = false;
             window.HideTimerId = GameModule.Timer.AddTimer((arg) =>
             {
                 CloseUI(type);
-            },window.HideTimeToClose);
+            }, window.HideTimeToClose);
         }
 
         /// <summary>
@@ -536,7 +564,7 @@ namespace TEngine
                 }
                 else
                 {
-                    if(window.WindowLayer == (int)FUILayer.Bottom)
+                    if (window.WindowLayer == (int)FUILayer.Bottom)
                     {
                         window.Visible = true;
                     }
@@ -658,7 +686,7 @@ namespace TEngine
         {
             return FUIPackageManager.IsLoadedPackage(packageName);
         }
-        
+
         /// <summary>
         /// 检测并进行包绑定
         /// </summary>

@@ -1,7 +1,6 @@
+//using Protos;
 using System;
 using System.Collections.Generic;
-using Protos;
-using TEngine;
 
 namespace GameNetwork
 {
@@ -78,25 +77,25 @@ namespace GameNetwork
         /// </summary>
         /// <returns></returns>
         ///
-        public void InvokeOnEvent(PushMessage msg)
-        {
-            if (msg != null && msg.Messages != null)
-            {
-                for (int i = 0; i < msg.Messages.Count; i++)
-                {
-                    PushMessageItem item = msg.Messages[i];
-                    if (item == null) continue;
-                    int routeId = item.Cmd;
-                    Log.Debug($"收到推送: {routeId}");
-                    if (!_pushMap.ContainsKey(routeId)) continue;
-                    var list = _pushMap[routeId];
-                    foreach (var action in list)
-                    {
-                        action.Invoke(item);
-                    }
-                }
-            }
-        }
+        //public void InvokeOnEvent(PushMessage msg)
+        //{
+        //    if (msg != null && msg.Messages != null)
+        //    {
+        //        for (int i = 0; i < msg.Messages.Count; i++)
+        //        {
+        //            PushMessageItem item = msg.Messages[i];
+        //            if (item == null) continue;
+        //            int routeId = item.Cmd;
+        //            Log.Debug($"收到推送: {routeId}");
+        //            if (!_pushMap.ContainsKey(routeId)) continue;
+        //            var list = _pushMap[routeId];
+        //            foreach (var action in list)
+        //            {
+        //                action.Invoke(item);
+        //            }
+        //        }
+        //    }
+        //}
 
         // Dispose() calls Dispose(true)
         public void Dispose()

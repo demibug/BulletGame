@@ -23,17 +23,17 @@ namespace GameScene
 
             _mSceneRes = res;
             _mOnLoadSceneAction = onLoadScene;
-            SceneOperationHandle handle = GameModule.Scene.LoadScene("EmptyScene");
+            SceneHandle handle = GameModule.Scene.LoadScene("EmptyScene");
             handle.Completed += OnLoadEmptyComplete;
         }
 
-        private void OnLoadEmptyComplete(SceneOperationHandle handle)
+        private void OnLoadEmptyComplete(SceneHandle handle)
         {
-            SceneOperationHandle sceneOperationHandle = GameModule.Scene.LoadScene(_mSceneRes);
+            SceneHandle sceneOperationHandle = GameModule.Scene.LoadScene(_mSceneRes);
             sceneOperationHandle.Completed += OnLoadSceneComplete;
         }
 
-        private void OnLoadSceneComplete(SceneOperationHandle handle)
+        private void OnLoadSceneComplete(SceneHandle handle)
         {
             bool complete = false;
             if (handle == null || !handle.IsDone)
