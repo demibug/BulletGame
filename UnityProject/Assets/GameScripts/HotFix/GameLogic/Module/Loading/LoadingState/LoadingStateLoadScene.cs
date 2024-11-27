@@ -34,6 +34,7 @@ namespace GameLogic
             // bool isOtherWorld = DataSystem.Instance.CorePlay.IsOtherWorld = CorePlaySystem.Instance.IsOtherWorld(stageId);
             // int flag = CorePlaySystem.InitFlag(true, true, isOtherWorld, true);
             // CorePlaySystem.Instance.PreloadScene(stageId, flag);
+            GameEvent.Send(GEvent.PreloadSceneReady);
         }
 
         private void OnReady()

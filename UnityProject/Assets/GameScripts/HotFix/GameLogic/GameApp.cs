@@ -1,15 +1,17 @@
+using GameBase;
+using GameData;
+using GameLogic;
 using System.Collections.Generic;
 using System.Reflection;
-using GameBase;
 using TEngine;
 
 /// <summary>
 /// 游戏App。
 /// </summary>
-public partial class GameApp:Singleton<GameApp>
+public partial class GameApp : Singleton<GameApp>
 {
     private static List<Assembly> _hotfixAssembly;
-    
+
     /// <summary>
     /// 热更域App主入口。
     /// </summary>
@@ -37,7 +39,18 @@ public partial class GameApp:Singleton<GameApp>
     /// </summary>
     private void StartGameLogic()
     {
-        
+        int lang = 0;
+        if (GameModule.Setting.HasSetting(Constant.LauncherSettingLanguage))
+        {
+            lang = GameModule.Setting.GetInt(Constant.LauncherSettingLanguage);
+        }
+
+        //默认语言为英文
+        //LMgr.CurLanguage = (GameData.GDefine.Language)lang;
+        //加载本地缓存
+        LocalData.InitCacheData();
+        // 开始加载
+        LoadingSystem.Instance.StartLoading();
     }
 
     /// <summary>
@@ -61,7 +74,7 @@ public partial class GameApp:Singleton<GameApp>
             Utility.Unity.RemoveOnDrawGizmosListener(Instance.OnDrawGizmos);
             Utility.Unity.RemoveOnApplicationPauseListener(Instance.OnApplicationPause);
         }
-        
+
         SingletonSystem.Release();
     }
 

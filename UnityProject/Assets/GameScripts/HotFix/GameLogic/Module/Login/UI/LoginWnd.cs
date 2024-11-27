@@ -1,17 +1,17 @@
-using System.Collections.Generic;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using FairyGUI;
 using GameAudio;
 using GameData;
 using Pkg_Login;
+using System.Collections.Generic;
+using System.Threading;
 using TEngine;
 using UnityEngine;
 using Language = GameData.GDefine.Language;
 
 namespace GameLogic
 {
-    [FUIWindow(FUILayer.Top, fullScreen: true, FUIPackageDefine.Res_Common, FUIPackageDefine.LoginPackage)]
+    [FUIWindow(FUILayer.Top, fullScreen: true, FUIPackageDefine.Res_Common, FUIPackageDefine.Pkg_Login)]
     public class LoginWnd : FUIWindow
     {
         private UI_LoginWnd m_view;
@@ -76,7 +76,7 @@ namespace GameLogic
                 {
                     m_view.txtServerInput.text = setInfo.serverId;
                     m_view.txtUserInput.text = setInfo.userName;
-                    
+
                     AudioSystem.Instance.IsCanPlayBgMusic = setInfo.hasMusic;
                     AudioSystem.Instance.IsCanPlaySound = setInfo.hasSound;
 
@@ -119,7 +119,7 @@ namespace GameLogic
 
             m_view.txtServerInput.promptText = "[color=#888888]enter server number[/color]";
             m_view.txtUserInput.promptText = "[color=#888888]enter user name[/color]";
-            
+
             // m_view.btnLogin.text = LMgr.TC(103603); // "Login";
             m_view.btnLogin.onClick.Set(OnBtnLoginClick);
 #if UNITY_EDITOR || DEBUG
@@ -202,15 +202,15 @@ namespace GameLogic
             m_view.txtErrorTip.text = "";
             if (SettingsUtils.ResourcesArea.ServerType == ServerTypeEnum.Intranet)
             {
-                LocalData.UpdateDefaultSetting(strUserName, strServerId, m_curLanguage, AudioSystem.Instance.IsCanPlayBgMusic,  AudioSystem.Instance.IsCanPlaySound,null,LastEmojiItemId,RedNoteDayDic);
+                LocalData.UpdateDefaultSetting(strUserName, strServerId, m_curLanguage, AudioSystem.Instance.IsCanPlayBgMusic, AudioSystem.Instance.IsCanPlaySound, null, LastEmojiItemId, RedNoteDayDic);
             }
             else if (SettingsUtils.ResourcesArea.ServerType == ServerTypeEnum.Extranet)
             {
-                LocalData.UpdateDefaultSetting(strUserName, strServerId, m_curLanguage, AudioSystem.Instance.IsCanPlayBgMusic,  AudioSystem.Instance.IsCanPlaySound,null,LastEmojiItemId,RedNoteDayDic);
+                LocalData.UpdateDefaultSetting(strUserName, strServerId, m_curLanguage, AudioSystem.Instance.IsCanPlayBgMusic, AudioSystem.Instance.IsCanPlaySound, null, LastEmojiItemId, RedNoteDayDic);
             }
             else if (SettingsUtils.ResourcesArea.ServerType == ServerTypeEnum.Formal)
             {
-                LocalData.UpdateDefaultSetting(strUserName, strServerId, m_curLanguage, AudioSystem.Instance.IsCanPlayBgMusic,  AudioSystem.Instance.IsCanPlaySound,null,LastEmojiItemId,RedNoteDayDic);
+                LocalData.UpdateDefaultSetting(strUserName, strServerId, m_curLanguage, AudioSystem.Instance.IsCanPlayBgMusic, AudioSystem.Instance.IsCanPlaySound, null, LastEmojiItemId, RedNoteDayDic);
             }
 
             //抛出事件通知登陆

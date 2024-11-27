@@ -42,7 +42,7 @@ namespace GameLogic
             int stage = GameData.LauncherSetting.CurrentStage;
             if (stage == 0)
             {
-                stage = GameConfig.JSONConfig.Instance.Global.InitialMap;
+                stage = GameConfig.JSONConfig.Instance.General.InitialMap;
             }
 
             return stage;

@@ -21,7 +21,7 @@ namespace GameLogic
         public override void Awake()
         {
             InitUICamera();
-            CreateUILight();
+            //CreateUILight();
         }
 
         private void InitUICamera()
@@ -37,13 +37,6 @@ namespace GameLogic
             GameObject go = ResSystem.Instance.LoadAsset<GameObject>("light_Prefab");
             go.name = "UILight";
             GameObject.DontDestroyOnLoad(go);
-            // Light light = go.transform.GetComponentInChildren<Light>();
-            // // 获取UI层的掩码
-            // int uiLayer = LayerMask.NameToLayer("UI");
-            // int uiLayerMask = 1 << uiLayer;
-            // // 设置层
-            // light.cullingMask = uiLayerMask;
-            // light.shadows = LightShadows.None;
         }
 
 

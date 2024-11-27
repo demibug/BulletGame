@@ -6,7 +6,7 @@ using FairyGUI.Utils;
 
 namespace Pkg_Login
 {
-    public partial class UI_LoginWnd : GComponent
+    public class UI_LoginWnd : GComponent
     {
         public const string UIPackageName = "Pkg_Login";
         public const string UIResName = "LoginWnd";

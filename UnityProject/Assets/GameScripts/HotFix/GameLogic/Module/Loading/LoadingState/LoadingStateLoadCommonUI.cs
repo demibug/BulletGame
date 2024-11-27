@@ -41,7 +41,7 @@ namespace GameLogic
         {
             string[] lstRes =
             {
-                FUIPackageDefine.CommonPackage
+                FUIPackageDefine.Pkg_Common
             };
 
             GComponent gcomp = GameModule.FUI.UIRoot.GetChild("LauncherLoadWnd") as GComponent;

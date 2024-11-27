@@ -12,7 +12,7 @@ namespace GameConfig
         /// <summary>
         /// 全局表
         /// </summary>
-        public GeneralData Global { get; private set; } = null;
+        public GeneralConfig General { get; private set; } = null;
 
 
         public void InitGlobal()
@@ -38,7 +38,7 @@ namespace GameConfig
             }
 
             //全局表赋值
-            Global = Utility.Json.ToObject<GeneralData>(textAsset.text);
+            General = Utility.Json.ToObject<GeneralConfig>(textAsset.text);
         }
     }
 }
