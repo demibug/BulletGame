@@ -15,10 +15,12 @@ namespace GameMain
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             _procedureOwner = procedureOwner;
+            Log.Info("ProcedureClearCache");
             Log.Info("清理未使用的缓存文件！");
-            
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"清理未使用的缓存文件...");
-            
+
+            UILoadMgr.Show(UIDefine.UILoadUpdate, $"清理未使用的缓存文件...");
+            LauncherLoadMgr.Show(LauncherUIDefine.LauncherLoadWnd, Constant.LaunchStep.ClearCache);
+
             var operation = GameModule.Resource.ClearUnusedCacheFilesAsync();
             operation.Completed += Operation_Completed;
         }

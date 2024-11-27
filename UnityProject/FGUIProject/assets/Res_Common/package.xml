@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="ylhicny9">
+  <resources>
+    <image id="sp7c0" name="btn2_减去.png" path="/A-按钮/"/>
+    <image id="sp7c1" name="panel_主界面_下方底图_02.png" path="/A-按钮/"/>
+    <image id="sp7c2" name="panel_主界面_下方底图_01.png" path="/A-按钮/"/>
+    <image id="sp7c3" name="panel_主界面_下方_棋盘行走_遮罩.png" path="/A-按钮/"/>
+    <image id="sp7c4" name="icon_跳过.png" path="/A-按钮/"/>
+    <image id="sp7c5" name="btn_隐藏.png" path="/A-按钮/"/>
+    <image id="sp7c6" name="btn_规则详情01.png" path="/A-按钮/"/>
+    <image id="sp7c7" name="btn_破坏_表情.png" path="/A-按钮/"/>
+    <image id="sp7c8" name="btn_破坏_切换.png" path="/A-按钮/"/>
+    <image id="sp7c9" name="btn_接受.png" path="/A-按钮/"/>
+    <image id="sp7ca" name="btn_拒绝.png" path="/A-按钮/"/>
+    <image id="sp7cb" name="btn_小按钮_编辑.png" path="/A-按钮/"/>
+    <image id="sp7cc" name="btn_小按钮_删除.png" path="/A-按钮/"/>
+    <image id="sp7cd" name="btn_主界面_下方_掷骰子_按下.png" path="/A-按钮/"/>
+    <image id="sp7ce" name="btn_主界面_下方_掷骰子_01.png" path="/A-按钮/"/>
+    <image id="sp7cf" name="panel_列表_01_选中态.png" path="/A-按钮/"/>
+    <image id="sp7cg" name="btn_主界面_下方_掷骰子.png" path="/A-按钮/"/>
+    <image id="sp7ch" name="btn_com_菜单按钮底.png" path="/A-按钮/"/>
+    <image id="sp7ci" name="btn_com_单选_空.png" path="/A-按钮/"/>
+    <image id="sp7cj" name="btn_com_单选.png" path="/A-按钮/"/>
+    <image id="sp7ck" name="btn_com_关闭_01.png" path="/A-按钮/"/>
+    <image id="sp7cl" name="btn_com_red.png" path="/A-按钮/"/>
+    <image id="sp7cm" name="btn_com_orange.png" path="/A-按钮/"/>
+    <image id="sp7cn" name="btn_com_green_small.png" path="/A-按钮/"/>
+    <image id="sp7co" name="btn_com_green.png" path="/A-按钮/" exported="true" scale="9grid" scale9grid="44,26,88,52"/>
+    <image id="sp7cp" name="btn_com_gray.png" path="/A-按钮/"/>
+    <image id="sp7cq" name="btn_com_facebook.png" path="/A-按钮/"/>
+    <image id="sp7cr" name="btn_com_blue.png" path="/A-按钮/"/>
+    <image id="sp7cs" name="btn2_添加_orange.png" path="/A-按钮/"/>
+    <image id="sp7ct" name="btn2_添加.png" path="/A-按钮/"/>
+    <image id="sp7cu" name="btn2_减去_灰态.png" path="/A-按钮/"/>
+    <image id="sp7cv" name="btn_com_通用弹窗_关闭.png" path="/A-按钮/"/>
+    <image id="sp7cw" name="panel_底部关闭按钮.png" path="/A-按钮/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

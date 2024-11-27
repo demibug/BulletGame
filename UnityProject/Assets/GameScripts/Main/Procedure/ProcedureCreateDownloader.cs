@@ -29,11 +29,13 @@ namespace GameMain
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             _procedureOwner = procedureOwner;
-            
+
+            Log.Info("ProcedureCreateDownloader");
             Log.Info("创建补丁下载器");
-            
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"创建补丁下载器...");
-            
+
+            UILoadMgr.Show(UIDefine.UILoadUpdate, $"创建补丁下载器...");
+            LauncherLoadMgr.Show(LauncherUIDefine.LauncherLoadWnd, Constant.LaunchStep.CreateDownloader);
+
             CreateDownloader().Forget();
         }
 

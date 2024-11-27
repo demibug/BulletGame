@@ -15,10 +15,11 @@ namespace GameMain
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
+            Log.Info("ProcedureUpdateManifest");
             Log.Info("更新资源清单！！！");
-            
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"更新清单文件...");
-            
+
+            UILoadMgr.Show(UIDefine.UILoadUpdate, $"更新清单文件...");
+            LauncherLoadMgr.Show(LauncherUIDefine.LauncherLoadWnd, Constant.LaunchStep.UpdateManifest);
             UpdateManifest(procedureOwner).Forget();
         }
 

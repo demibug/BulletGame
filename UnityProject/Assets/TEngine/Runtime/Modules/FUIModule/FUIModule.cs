@@ -327,7 +327,7 @@ namespace TEngine
         /// <returns>打开窗口操作句柄。</returns>
         public void ShowUIAsync(System.Type type, params System.Object[] userDatas)
         {
-            ShowUIImp(type, true, userDatas);
+            ShowUIImp(type, userDatas);
         }
 
         /// <summary>
@@ -349,7 +349,7 @@ namespace TEngine
         /// <returns>打开窗口操作句柄。</returns>
         public void ShowUI(System.Type type, params System.Object[] userDatas)
         {
-            ShowUIImp(type, false, userDatas);
+            ShowUIImp(type, userDatas);
         }
 
         /// <summary>
@@ -359,7 +359,7 @@ namespace TEngine
         /// <returns>打开窗口操作句柄。</returns>
         public async UniTask<FUIWindow> ShowUIAsyncAwait<T>(params System.Object[] userDatas) where T : FUIWindow
         {
-            return await ShowUIAwaitImp(typeof(T), true, userDatas);
+            return await ShowUIAwaitImp(typeof(T), userDatas);
         }
 
         private void ShowUIImp(System.Type type, params System.Object[] userDatas)
@@ -672,7 +672,7 @@ namespace TEngine
         /// <param name="fuiPackageNames">包名列表</param>
         /// <param name="onAddPackage">加载完成回调代理</param>
         /// <param name="needCache">是否需要缓存</param>
-        public void AddPackage(GObject uiObject, string[] fuiPackageNames, System.Action<bool> onAddPackage, string assetsPackageName)
+        public void AddPackage(GObject uiObject, string[] fuiPackageNames, System.Action<bool> onAddPackage, string assetsPackageName = "")
         {
             FUIPackageManager.AddPackage(uiObject, fuiPackageNames, onAddPackage, assetsPackageName);
         }

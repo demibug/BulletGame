@@ -37,6 +37,7 @@ namespace GameMain
         {
             _procedureOwner = procedureOwner;
 
+            Log.Info("ProcedureDownloadFile");
             Log.Info("开始下载更新文件！");
 
             UILoadMgr.Show(UIDefine.UILoadUpdate, "开始下载更新文件...");
@@ -81,6 +82,7 @@ namespace GameMain
 
             LoadUpdateLogic.Instance.DownProgressAction?.Invoke(GameModule.Resource.Downloader.Progress);
             UILoadMgr.Show(UIDefine.UILoadUpdate, $"{line1}\n{line2}\n{line3}");
+            LauncherLoadMgr.Show(LauncherUIDefine.LauncherLoadWnd, Constant.LaunchStep.DownloadFile, GameModule.Resource.Downloader.Progress);
 
             Log.Info($"{line1} {line2} {line3}");
         }

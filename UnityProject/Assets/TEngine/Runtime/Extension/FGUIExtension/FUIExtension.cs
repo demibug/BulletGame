@@ -35,8 +35,13 @@ namespace TEngine
                     Sprite sp = Resources.Load<Sprite>(location);
                     if (sp != null)
                     {
-                        AddImgRef(location);
                         gloader.texture = new NTexture(sp.texture);
+                        
+                        FUISpriteReference fguiSpriteRef = gloader.displayObject.gameObject.GetOrAddComponent<FUISpriteReference>();
+                        if (fguiSpriteRef != null)
+                        {
+                            fguiSpriteRef.Reference(location);
+                        }
                     }
                 }
                 else
@@ -48,9 +53,14 @@ namespace TEngine
                             Sprite sp = GameModule.Resource.LoadAsset<Sprite>(location, packageName);
                             if (sp != null)
                             {
-                                AddImgRef(location);
                                 gloader.texture = new NTexture(sp.texture);
                                 AssetsReference.Ref(sp, gloader.displayObject.gameObject);
+                                
+                                FUISpriteReference fguiSpriteRef = gloader.displayObject.gameObject.GetOrAddComponent<FUISpriteReference>();
+                                if (fguiSpriteRef != null)
+                                {
+                                    fguiSpriteRef.Reference(location);
+                                }
                             }
                         }
                     }
@@ -69,59 +79,18 @@ namespace TEngine
                                 }
                                 else
                                 {
-                                    AddImgRef(location);
                                     gloader.texture = new NTexture(sp.texture);
                                     AssetsReference.Ref(sp, gloader.displayObject.gameObject);
+                                    
+                                    FUISpriteReference fguiSpriteRef = gloader.displayObject.gameObject.GetOrAddComponent<FUISpriteReference>();
+                                    if (fguiSpriteRef != null)
+                                    {
+                                        fguiSpriteRef.Reference(location);
+                                    }
                                 }
                             }
                         }, packageName);
                     }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 卸载从Resources加载的资源
-        /// </summary>
-        public static void ReleaseImage(string location)
-        {
-            RemoveImgRef(location);
-        }
-
-        private static void AddImgRef(string location)
-        {
-            if (!string.IsNullOrEmpty(location))
-            {
-                if (_mImgRef.ContainsKey(location))
-                {
-                    int cnt = _mImgRef[location];
-                    _mImgRef[location] = ++cnt;
-                }
-                else
-                {
-                    _mImgRef.Add(location, 1);
-                }
-            }
-        }
-
-        private static void RemoveImgRef(string location)
-        {
-            if (_mImgRef.ContainsKey(location))
-            {
-                int cnt = _mImgRef[location];
-                cnt -= 1;
-                if (cnt <= 0)
-                {
-                    _mImgRef.Remove(location);
-                    Sprite sp = Resources.Load<Sprite>(location);
-                    if (sp != null)
-                    {
-                        Resources.UnloadAsset(sp);
-                    }
-                }
-                else
-                {
-                    _mImgRef[location] = cnt;
                 }
             }
         }

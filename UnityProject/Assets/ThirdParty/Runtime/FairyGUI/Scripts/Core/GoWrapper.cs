@@ -69,19 +69,20 @@ namespace FairyGUI
             SetWrapTarget(target, cloneMaterial);
         }
 
+        // modify whj
         /// <summary>
         ///  设置包装对象。注意如果原来有包装对象，设置新的包装对象后，原来的包装对象只会被删除引用，但不会被销毁。
         /// </summary>
         /// <param name="target"></param>
         /// <param name="cloneMaterial">如果true，则复制材质，否则直接使用sharedMaterial。</param>
-        public void SetWrapTarget(GameObject target, bool cloneMaterial)
+        public void SetWrapTarget(GameObject target, bool cloneMaterial, bool isRemoveFromParent = true)
         {
             InvalidateBatchingState();
 
             RecoverMaterials();
 
             _cloneMaterial = cloneMaterial;
-            if (_wrapTarget != null)
+            if (_wrapTarget != null && isRemoveFromParent)
                 _wrapTarget.transform.SetParent(null, false);
 
             _canvas = null;

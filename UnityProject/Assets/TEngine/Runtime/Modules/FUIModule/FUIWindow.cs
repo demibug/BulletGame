@@ -23,7 +23,6 @@ namespace TEngine
         //private GraphicRaycaster[] m_childRaycaster;
 
         public override FUIBaseType BaseType => FUIBaseType.Window;
-        private static Dictionary<GLoader, string> m_gloaderTextureNames = new();
 
         public GComponent Component
         {
@@ -467,8 +466,6 @@ namespace TEngine
             IsDestroyed = true;
 
             RemoveAllUIEvent();
-            DestroyFuiComponent();
-            ReleaseFuiImage();
 
             for (int i = 0; i < LstChild.Count; i++)
             {
@@ -568,48 +565,6 @@ namespace TEngine
             {
                 GameModule.Timer.RemoveTimer(HideTimerId);
                 HideTimerId = 0;
-            }
-        }
-
-        protected void SetFuiTexture(GLoader loader, string imgName, bool isFromResources = false, string assetsPackageName = "")
-        {
-            if (loader != null)
-            {
-                if (string.IsNullOrEmpty(imgName))
-                {
-                    if(m_gloaderTextureNames.ContainsKey(loader))
-                    {
-                        FUIExtension.ReleaseImage(m_gloaderTextureNames[loader]);
-                    }
-                    m_gloaderTextureNames.Remove(loader);
-                }
-                else
-                {
-                    if (m_gloaderTextureNames.ContainsKey(loader))
-                    {
-                        string oldUrl = m_gloaderTextureNames[loader];
-                        if (oldUrl != imgName)
-                        {
-                            FUIExtension.ReleaseImage(oldUrl);
-                        }
-                        m_gloaderTextureNames[loader] = imgName;
-                    }
-                    else
-                    {
-                        m_gloaderTextureNames[loader] = imgName;
-                    }
-                }
-
-                loader.SetFuiTexture(imgName, isFromResources, assetsPackageName);
-            }
-        }
-
-        protected void ReleaseFuiImage()
-        {
-            foreach (KeyValuePair<GLoader,string> keyValuePair in m_gloaderTextureNames)
-            {
-                string res = keyValuePair.Value;
-                FUIExtension.ReleaseImage(res);
             }
         }
     }

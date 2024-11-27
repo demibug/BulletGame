@@ -22,7 +22,10 @@ namespace GameMain
 
             base.OnEnter(procedureOwner);
 
+            Log.Info("ProcedureUpdateVersion");
+            Log.Info("更新静态版本文件");
             UILoadMgr.Show(UIDefine.UILoadUpdate, $"更新静态版本文件...");
+            LauncherLoadMgr.Show(LauncherUIDefine.LauncherLoadWnd, Constant.LaunchStep.UpdateVersion);
 
             //检查设备是否能够访问互联网
             if (Application.internetReachability == NetworkReachability.NotReachable)

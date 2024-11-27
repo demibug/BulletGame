@@ -64,6 +64,11 @@ public class UpdateData
     public UpdateNotice UpdateNotice;
 
     /// <summary>
+    /// 测试服热更资源地址。
+    /// </summary>
+    public string TestHostServerURL;
+
+    /// <summary>
     /// 热更资源地址。
     /// </summary>
     public string HostServerURL;

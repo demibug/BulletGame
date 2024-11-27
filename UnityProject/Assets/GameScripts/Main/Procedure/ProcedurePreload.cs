@@ -40,7 +40,9 @@ namespace GameMain
 
             _loadedFlag.Clear();
 
+            Log.Info("ProcedurePreload");
             UILoadMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.Label_Load_Load_Progress, 0));
+            LauncherLoadMgr.Show(LauncherUIDefine.LauncherLoadWnd, Constant.LaunchStep.Preload);
 
             GameEvent.Send("UILoadUpdate.RefreshVersion");
 

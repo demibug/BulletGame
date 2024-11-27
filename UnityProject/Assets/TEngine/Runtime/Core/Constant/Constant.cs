@@ -10,8 +10,8 @@
         /// </summary>
         internal const int DefaultPriority = 0;
 
-        public const int DesignWidth = 1920;
-        public const int DesignHeight = 1080;
+        public const int DesignWidth = 750;
+        public const int DesignHeight = 1334;
 
     }
 
@@ -110,6 +110,22 @@
             /// </summary>
             CloseLoading,
         }
+        
+        public static class LauncherEvent
+        {
+            /// <summary>
+            /// 进度查看LauncherDefine.cs
+            /// </summary>
+            public static int LauncherEventLoadProgress = RuntimeId.ToRuntimeId("LauncherEventLoadProgress");
+
+            public static int LauncherEventLoadFinish = RuntimeId.ToRuntimeId("LauncherEventLoadFinish");
+
+            public static int LauncherEventLoginProgress = RuntimeId.ToRuntimeId("LauncherEventLoginProgress");
+        }
+
+        public const string LauncherSettingLanguage = "LauncherSettingLanguage"; //登录语言语言
+
+        public const string LauncherSettingStage = "LauncherSettingStage"; // 登录场景
 
         /// <summary>
         /// 当前使用的语言的索引值
@@ -120,9 +136,5 @@
             EN,
             AR,
         }
-
-        public const string LauncherSettingLanguage = "LauncherSettingLanguage"; //登录语言语言
-
-        public const string LauncherSettingStage = "LauncherSettingStage"; // 登录场景
     }
 }

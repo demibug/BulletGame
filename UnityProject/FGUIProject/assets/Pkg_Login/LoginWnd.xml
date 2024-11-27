@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <loader id="n0_lo98" name="imgBg" xy="0,-208" size="750,1750" align="center" vAlign="middle" fill="scaleFree">
+      <relation target="" sidePair="width-width,center-center,middle-middle"/>
+    </loader>
+    <component id="n15_v8gt" name="btnLogin" src="sp7c2" fileName="Button/BtnLogin.xml" pkg="fda90p2s" xy="248,1157"/>
+    <loader id="n12_ejts" name="imgLoginBg" xy="61,702" pivot="0.5,0.5" size="627,417" scale="0.9,0.9">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+    </loader>
+    <loader id="n13_ejts" name="imgLogo" xy="93,80" pivot="0.5,0.5" size="564,231" scale="0.9,0.9">
+      <relation target="" sidePair="center-center,top-top"/>
+    </loader>
+    <text id="n5_lo98" name="txtUserTitle" xy="279,901" pivot="0.5,0.5" size="186,36" fontSize="26" color="#373737" align="center" vAlign="middle" autoClearText="true" text="请输入登陆账号">
+      <relation target="n12_ejts" sidePair="center-center,top-top"/>
+    </text>
+    <text id="n6_lo98" name="txtServerTitle" xy="282,770" pivot="0.5,0.5" size="186,36" fontSize="26" color="#373737" align="center" vAlign="middle" autoClearText="true" text="请输入登陆账号">
+      <relation target="n12_ejts" sidePair="center-center,top-top"/>
+    </text>
+    <text id="n9_twvy" name="txtErrorTip" xy="297,1027" pivot="0.5,0.5" size="158,32" fontSize="22" color="#ff0000" align="center" vAlign="middle" singleLine="true" autoClearText="true" text="请输入登陆账号">
+      <relation target="n12_ejts" sidePair="center-center,bottom-bottom"/>
+    </text>
+    <text id="n7_lo98" name="txtServerInput" xy="178,823" size="398,44" fontSize="32" color="#ffffff" align="center" vAlign="middle" ubb="true" autoSize="shrink" singleLine="true" autoClearText="true" text="3456456345634" input="true" prompt="[color=#AAAAAA]请输入服务器编号[/color]">
+      <relation target="n12_ejts" sidePair="center-center,top-top"/>
+    </text>
+    <text id="n8_lo98" name="txtUserInput" xy="176,954" size="398,44" fontSize="32" color="#ffffff" align="center" vAlign="middle" ubb="true" autoSize="shrink" singleLine="true" autoClearText="true" text="345634563456" input="true" prompt="[color=#AAAAAA]请输入用户名[/color]&#xA;">
+      <relation target="n12_ejts" sidePair="center-center,top-top"/>
+    </text>
+    <text id="n11_ejts" name="txtVersion" xy="514,33" size="190,39" fontSize="28" color="#ffffff" align="right" vAlign="middle" strokeColor="#000000" strokeSize="2" text="Ver 1.0.0.1000">
+      <relation target="" sidePair="right-center,top-top"/>
+    </text>
+  </displayList>
+</component>

@@ -75,8 +75,7 @@ namespace GameLogic
 
             m_dicUIRegister.Clear();
 
-            //RegUI<AladdinEventPanel>();
-            //RegUI<AladdinFriendRewardPanel>();
+            RegUI<LoginWnd>();
         }
     }
 }

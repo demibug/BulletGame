@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="fda90p2s">
+  <resources>
+    <component id="sp7c2" name="BtnLogin.xml" path="/Button/" exported="true"/>
+  </resources>
+  <publish name="" genCode="true"/>
+</packageDescription>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="245,105" extention="Button">
+  <displayList>
+    <image id="n0_sp7c" name="n0" src="sp7co" fileName="A-按钮/btn_com_green.png" pkg="ylhicny9" xy="0,0" size="245,105">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n3_sp7c" name="title" xy="27,14" size="190,64" fontSize="48" color="#ffffff" align="center" vAlign="middle" autoSize="none" shadowColor="#369400" shadowOffset="2,2" singleLine="true" text="OK">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <Button/>
+</component>

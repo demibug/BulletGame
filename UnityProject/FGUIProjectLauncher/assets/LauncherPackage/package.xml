@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="piqhg590">
+  <resources>
+    <component id="ewgu0" name="LauncherLoadWnd.xml" path="/" exported="true"/>
+    <component id="m3cj6" name="LoadProgress.xml" path="/"/>
+    <image id="fjc37" name="panel_com_黑色背景.png" path="/Res/" scale="9grid" scale9grid="10,10,20,20"/>
+    <movieclip id="jmml8" name="LoadingRun.jta" path="/"/>
+    <image id="es3t9" name="UI_ltdz01.png" path="/Res/"/>
+    <image id="es3ta" name="UI_ltdz02.png" path="/Res/"/>
+    <image id="es3tb" name="UI_ltdz03.png" path="/Res/"/>
+    <image id="es3tc" name="UI_ltdz04.png" path="/Res/"/>
+    <image id="es3td" name="UI_ltdz05.png" path="/Res/"/>
+    <image id="es3te" name="UI_ltdz06.png" path="/Res/"/>
+    <image id="es3tg" name="UI_loading进度条绿.png" path="/Res/" scale9grid="0,0,568,33"/>
+    <image id="es3th" name="UI_进度条底.png" path="/Res/" scale="9grid" scale9grid="16,11,32,22"/>
+  </resources>
+  <publish name="" genCode="true"/>
+</packageDescription>

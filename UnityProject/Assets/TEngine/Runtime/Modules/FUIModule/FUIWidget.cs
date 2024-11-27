@@ -8,7 +8,7 @@ namespace TEngine
     /// <summary>
     /// 窗口组件
     /// </summary>
-    public abstract class FUIWidget : FUIBase, IFUIBehaviour
+    public abstract class FUIWidget : FUIBase
     {
         #region Properties
 
@@ -482,7 +482,6 @@ namespace TEngine
             m_parent?.SetUpdateDirty();
 
             RemoveAllUIEvent();
-            DestroyFuiComponent();
 
             foreach (var uiChild in LstChild)
             {

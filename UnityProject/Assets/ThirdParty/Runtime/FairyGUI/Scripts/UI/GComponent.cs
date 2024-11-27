@@ -1615,12 +1615,12 @@ namespace FairyGUI
         virtual protected void ConstructExtension(ByteBuffer buffer)
         {
         }
-
+        
         /// <summary>
         /// Method for extensions to override
         /// </summary>
         /// <param name="xml"></param>
-        virtual public void ConstructFromXML(XML xml)
+        public virtual void ConstructFromXML(XML xml)
         {
         }
 

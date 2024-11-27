@@ -1,5 +1,4 @@
 using FairyGUI;
-using GameFgui;
 using System.Collections.Generic;
 using TEngine;
 using UnityEngine;
@@ -8,8 +7,6 @@ namespace GameLogic
 {
     public class FUIComponent<FuiType> : IFUIComponent where FuiType : IFUIConstructObject, new()
     {
-        private Dictionary<GLoader, string> _dicImgUrlCache = new();
-
         protected FuiType m_view;
 
         public GComponent ViewInput { get; private set; }
@@ -282,70 +279,5 @@ namespace GameLogic
         }
 
         #endregion
-
-        /// <summary>
-        /// 加载一张图片
-        /// </summary>
-        /// <param name="loader"></param>
-        /// <param name="imgName"></param>
-        /// <param name="isFromResources"></param>
-        protected void SetImage(GLoader loader, string imgName, bool isFromResources = false)
-        {
-            if (loader != null)
-            {
-                if (string.IsNullOrEmpty(imgName))
-                {
-                    if (_dicImgUrlCache.ContainsKey(loader))
-                    {
-                        FUIExtension.ReleaseImage(_dicImgUrlCache[loader]);
-                    }
-                    _dicImgUrlCache.Remove(loader);
-                }
-                else
-                {
-                    if (_dicImgUrlCache.ContainsKey(loader))
-                    {
-                        string oldUrl = _dicImgUrlCache[loader];
-                        if (oldUrl != imgName)
-                        {
-                            FUIExtension.ReleaseImage(oldUrl);
-                        }
-                        _dicImgUrlCache[loader] = imgName;
-                    }
-                    else
-                    {
-                        _dicImgUrlCache[loader] = imgName;
-                    }
-                }
-                loader.SetFuiTexture(imgName);
-            }
-        }
-
-        /// <summary>
-        /// 设置组件中指定名称对象的图片
-        /// </summary>
-        /// <param name="gCom"></param>
-        /// <param name="objName"></param>
-        /// <param name="imgName"></param>
-        protected void SetImage(GComponent gCom, string objName, string imgName)
-        {
-            if (gCom != null)
-            {
-                GObject gObj = gCom.GetChild(objName);
-                if (gObj != null)
-                {
-                    SetImage(gObj.asLoader, imgName);
-                }
-            }
-        }
-
-        protected void ReleaseFuiImage()
-        {
-            foreach (KeyValuePair<GLoader, string> keyValuePair in _dicImgUrlCache)
-            {
-                string res = keyValuePair.Value;
-                FUIExtension.ReleaseImage(res);
-            }
-        }
     }
 }

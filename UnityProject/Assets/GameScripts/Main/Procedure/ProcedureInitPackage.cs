@@ -23,8 +23,12 @@ namespace GameMain
 
             _procedureOwner = procedureOwner;
 
+            Log.Info("ProcedureInitPackage");
             //Fire Forget立刻触发UniTask初始化Package
             InitPackage(procedureOwner).Forget();
+
+
+            LauncherLoadMgr.Show(LauncherUIDefine.LauncherLoadWnd, Constant.LaunchStep.InitPackage);
         }
 
         private async UniTaskVoid InitPackage(ProcedureOwner procedureOwner)
@@ -40,15 +44,26 @@ namespace GameMain
 
                         if (updateData != null)
                         {
-                            if (!string.IsNullOrEmpty(updateData.HostServerURL))
+                            if (SettingsUtils.ResourcesArea.ServerType == ServerTypeEnum.Extranet)    // 外网测试服
                             {
-                                SettingsUtils.FrameworkGlobalSettings.HostServerURL = updateData.HostServerURL;
+                                if (!string.IsNullOrEmpty(updateData.TestHostServerURL))
+                                {
+                                    SettingsUtils.FrameworkGlobalSettings.HostServerURL = updateData.TestHostServerURL;
+                                    SettingsUtils.FrameworkGlobalSettings.FallbackHostServerURL = updateData.TestHostServerURL;
+                                }
                             }
-
-                            if (!string.IsNullOrEmpty(updateData.FallbackHostServerURL))
+                            else if (SettingsUtils.ResourcesArea.ServerType == ServerTypeEnum.Formal) // 正式服
                             {
-                                SettingsUtils.FrameworkGlobalSettings.FallbackHostServerURL =
-                                    updateData.FallbackHostServerURL;
+                                if (!string.IsNullOrEmpty(updateData.HostServerURL))
+                                {
+                                    SettingsUtils.FrameworkGlobalSettings.HostServerURL = updateData.HostServerURL;
+                                }
+
+                                if (!string.IsNullOrEmpty(updateData.FallbackHostServerURL))
+                                {
+                                    SettingsUtils.FrameworkGlobalSettings.FallbackHostServerURL =
+                                        updateData.FallbackHostServerURL;
+                                }
                             }
                         }
                     }

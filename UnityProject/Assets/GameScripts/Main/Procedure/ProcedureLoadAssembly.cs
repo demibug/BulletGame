@@ -37,7 +37,9 @@ namespace GameMain
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
+            Log.Info("ProcedureLoadAssembly");
             Log.Debug("HyBridCLR ProcedureLoadAssembly OnEnter");
+            LauncherLoadMgr.Show(LauncherUIDefine.LauncherLoadWnd, Constant.LaunchStep.Assembly);
             m_procedureOwner = procedureOwner;
 
             LoadAssembly().Forget();

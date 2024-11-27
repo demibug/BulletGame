@@ -93,8 +93,6 @@ namespace TEngine
         /// </summary>
         protected List<FUIWidget> m_listUpdateChild = null;
 
-        protected List<IFUIComponent> m_listFuiComponent;
-
         /// <summary>
         /// 是否持有Update行为
         /// </summary>
@@ -607,41 +605,6 @@ namespace TEngine
         {
             // 是否已完成
             OnLoadPackagesComplete(isSucceed);
-        }
-
-        #endregion
-
-        #region FuiComponent挂载组件
-
-        /// <summary>
-        /// 注册FuiComponent挂载组件
-        /// </summary>
-        /// <param name="fuiComponent"></param>
-        protected void RegisterFuiComponent(IFUIComponent fuiComponent)
-        {
-            if (m_listFuiComponent == null)
-            {
-                m_listFuiComponent = new List<IFUIComponent> { fuiComponent };
-            }
-            else
-            {
-                m_listFuiComponent.Add(fuiComponent);
-            }
-        }
-
-        /// <summary>
-        /// 销毁uiComponent挂载组件
-        /// </summary>
-        protected void DestroyFuiComponent()
-        {
-            if (m_listFuiComponent != null)
-            {
-                for (int i = 0; i < m_listFuiComponent.Count; i++)
-                {
-                    var comp = m_listFuiComponent[i];
-                    comp.Destroy();
-                }
-            }
         }
 
         #endregion

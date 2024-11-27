@@ -11,7 +11,7 @@ namespace TEngine
     {
         #region Propreties
 
-        private System.Action<UIWindow> _prepareCallback;
+        private Action<UIWindow> _prepareCallback;
 
         private bool _isCreate = false;
 
@@ -31,7 +31,7 @@ namespace TEngine
         /// 窗口位置组件。
         /// </summary>
         public override Transform transform => _panel.transform;
-        
+
         /// <summary>
         /// 窗口矩阵位置组件。
         /// </summary>
@@ -66,12 +66,12 @@ namespace TEngine
         /// 是内部资源无需AB加载。
         /// </summary>
         public bool FromResources { private set; get; }
-        
+
         /// <summary>
         /// 隐藏窗口关闭时间。
         /// </summary>
         public int HideTimeToClose { get; set; }
-        
+
         public int HideTimerId { get; set; }
 
         /// <summary>
@@ -227,6 +227,7 @@ namespace TEngine
         internal bool IsLoadDone = false;
 
         internal bool IsDestroyed = false;
+
         #endregion
 
         public void Init(string name, int layer, bool fullScreen, string assetName, bool fromResources, int hideTimeToClose)
@@ -239,7 +240,7 @@ namespace TEngine
             HideTimeToClose = hideTimeToClose;
         }
 
-        internal void TryInvoke(System.Action<UIWindow> prepareCallback, System.Object[] userDatas)
+        internal void TryInvoke(Action<UIWindow> prepareCallback, System.Object[] userDatas)
         {
             base.userDatas = userDatas;
             if (IsPrepare)
@@ -250,6 +251,7 @@ namespace TEngine
             {
                 _prepareCallback = prepareCallback;
             }
+
             CancelHideToCloseTimer();
         }
 
@@ -422,7 +424,7 @@ namespace TEngine
                 Object.Destroy(panel);
                 return;
             }
-            
+
             panel.name = GetType().Name;
             _panel = panel;
             _panel.transform.localPosition = Vector3.zero;

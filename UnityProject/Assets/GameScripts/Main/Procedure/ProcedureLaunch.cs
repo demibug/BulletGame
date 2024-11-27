@@ -14,9 +14,11 @@ namespace GameMain
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            
+
+            Log.Info("ProcedureLaunch");
             //热更新UI初始化
             UILoadMgr.Initialize();
+            LauncherLoadMgr.FirstLoad();
 
             // 语言配置：设置当前使用的语言，如果不设置，则默认使用操作系统语言
             InitLanguageSettings();

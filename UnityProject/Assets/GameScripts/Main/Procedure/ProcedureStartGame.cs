@@ -1,5 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using TEngine;
 
 namespace GameMain
@@ -12,12 +11,14 @@ namespace GameMain
         {
             base.OnEnter(procedureOwner);
             StartGame().Forget();
+            Log.Info("ProcedureStartGame");
         }
 
         private async UniTaskVoid StartGame()
         {
             await UniTask.Yield();
             UILoadMgr.HideAll();
+            LauncherLoadMgr.Show(LauncherUIDefine.LauncherLoadWnd, Constant.LaunchStep.StartGame);
         }
     }
 }

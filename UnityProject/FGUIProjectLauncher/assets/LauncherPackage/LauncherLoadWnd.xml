@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334" designImageLayer="1">
+  <displayList>
+    <image id="n3_fjc3" name="n3" src="fjc37" fileName="Res/panel_com_黑色背景.png" xy="0,-233" size="750,1800">
+      <relation target="" sidePair="width-width,height-height,center-center,middle-middle"/>
+    </image>
+    <loader id="n0_ewgu" name="imgLoader" xy="0,-208" pivot="0.5,0.5" size="750,1750" align="center" vAlign="middle" fill="scaleFree">
+      <relation target="" sidePair="width-width,center-center,middle-middle"/>
+    </loader>
+    <component id="n2_m3cj" name="progress" src="m3cj6" fileName="LoadProgress.xml" xy="101,1240" size="571,43">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+      <ProgressBar max="100"/>
+    </component>
+    <movieclip id="n4_jmml" name="camel" src="jmml8" fileName="LoadingRun.jta" xy="333,1155" pivot="0.5,0.5">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+    </movieclip>
+  </displayList>
+</component>
