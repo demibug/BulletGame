@@ -11,15 +11,17 @@ using Language = GameData.GDefine.Language;
 
 namespace GameLogic
 {
-    [FUIWindow(FUILayer.Top, fullScreen: true, FUIPackageDefine.Res_Common, FUIPackageDefine.Pkg_Login)]
+    [FUIWindow(FUILayer.Top, fullScreen: true,  
+        FUIPackageDefine.Res_Common, 
+        FUIPackageDefine.Res_MainMenu,
+        FUIPackageDefine.Pkg_Login,
+        FUIPackageDefine.Pkg_MainMenu)]
     public class LoginWnd : FUIWindow
     {
         private UI_LoginWnd m_view;
 
-        private CancellationToken funcCancel;
-
         //默认的语言为阿语
-        private Language m_curLanguage = Language.AR;
+        private Language m_curLanguage = Language.CN;
 
         public override void CheckBindAll()
         {
@@ -45,10 +47,14 @@ namespace GameLogic
 
         public override void OnCreate()
         {
+            TestProgressWgt tpw = CreateWidgetFromGComp<TestProgressWgt>(this.m_view.progress);
+
+            tpw.View.value = 90;
+            tpw.View.max = 100;
+            tpw.View.txtTitle.text = "8880";
+            
             FUIExtension.SetFuiTexture(m_view.imgBg, "AssetLoad/ImageBg/loading_bg", false, "", true);
             // FUIExtension.SetFuiTexture(m_view.imgLoginBg, "login_bg");
-
-            funcCancel = m_view.displayObject.gameObject.GetCancellationTokenOnDestroy();
 
             m_view.txtServerInput.text = "1";
             m_view.txtErrorTip.text = "";

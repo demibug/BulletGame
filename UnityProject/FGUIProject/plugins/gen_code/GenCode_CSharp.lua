@@ -27,7 +27,7 @@ local function genCode(handler)
         writer:writeln()
         writer:writeln('namespace %s', namespaceName)
         writer:startBlock()
-        writer:writeln('public class %s : %s', classInfo.className, classInfo.superClassName)
+        writer:writeln('public class %s : %s, TEngine.IFUIWidget', classInfo.className, classInfo.superClassName)
         writer:startBlock()
 
 		writer:writeln('public const string UIPackageName = "%s";', handler.pkg.name)
@@ -65,39 +65,48 @@ local function genCode(handler)
         writer:startBlock()
         writer:writeln('UIPackage.CreateObjectAsync(UIPackageName, UIResName, callback);')
         writer:endBlock()
-        writer:writeln()
+		writer:writeln()
 
-        if handler.project.type==ProjectType.MonoGame then
-            writer:writeln("protected override void OnConstruct()")
-            writer:startBlock()
-        else
-            writer:writeln('public override void ConstructFromXML(XML xml)')
-            writer:startBlock()
-            writer:writeln('base.ConstructFromXML(xml);')
-            writer:writeln()
-        end
+		writer:writeln('public void CreateFromGComp(GComponent rootComp)')
+		writer:startBlock()
+		
         for j=0,memberCnt-1 do
             local memberInfo = members[j]
             if memberInfo.group==0 then
                 if getMemberByName then
-                    writer:writeln('%s = (%s)GetChild("%s");', memberInfo.varName, memberInfo.type, memberInfo.name)
+                    writer:writeln('%s = (%s)rootComp?.GetChild("%s");', memberInfo.varName, memberInfo.type, memberInfo.name)
                 else
-                    writer:writeln('%s = (%s)GetChildAt(%s);', memberInfo.varName, memberInfo.type, memberInfo.index)
+                    writer:writeln('%s = (%s)rootComp?.GetChildAt(%s);', memberInfo.varName, memberInfo.type, memberInfo.index)
                 end
             elseif memberInfo.group==1 then
                 if getMemberByName then
-                    writer:writeln('%s = GetController("%s");', memberInfo.varName, memberInfo.name)
+                    writer:writeln('%s = rootComp?.GetController("%s");', memberInfo.varName, memberInfo.name)
                 else
-                    writer:writeln('%s = GetControllerAt(%s);', memberInfo.varName, memberInfo.index)
+                    writer:writeln('%s = rootComp?.GetControllerAt(%s);', memberInfo.varName, memberInfo.index)
                 end
             else
                 if getMemberByName then
-                    writer:writeln('%s = GetTransition("%s");', memberInfo.varName, memberInfo.name)
+                    writer:writeln('%s = rootComp?.GetTransition("%s");', memberInfo.varName, memberInfo.name)
                 else
-                    writer:writeln('%s = GetTransitionAt(%s);', memberInfo.varName, memberInfo.index)
+                    writer:writeln('%s = rootComp?.GetTransitionAt(%s);', memberInfo.varName, memberInfo.index)
                 end
             end
         end
+        writer:endBlock()
+		writer:writeln()
+		
+        if handler.project.type==ProjectType.MonoGame then
+            writer:writeln("protected override void OnConstruct()")
+            writer:startBlock()
+            writer:writeln()
+        else
+            writer:writeln('public override void ConstructFromXML(XML xml)')
+            writer:startBlock()
+            writer:writeln('base.ConstructFromXML(xml);')
+        end
+		
+		writer:writeln('CreateFromGComp(this);')
+        
         writer:endBlock()
 
         writer:endBlock() --class
@@ -131,7 +140,7 @@ local function genCode(handler)
     --    end
 	--	
     --    writer:writeln()
-	--	writer:writeln('public void ConstructObject(GComponent rootComp)')
+	--	writer:writeln('public void ConstructFromObject(GComponent rootComp)')
 	--	writer:startBlock()
 	--	
     --    for j=0,memberCnt-1 do

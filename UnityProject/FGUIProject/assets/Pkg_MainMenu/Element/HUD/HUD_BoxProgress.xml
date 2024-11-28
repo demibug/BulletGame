@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="245,41" extention="ProgressBar">
+  <displayList>
+    <image id="n0_h1y5" name="n0" src="e16i6m" fileName="A_新版HUD资源/Z-主界面新/ui_panel_zjmtzjdd.png" pkg="h9sioe80" xy="0,0" size="245,41">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n1_h1y5" name="bar" src="e16i6l" fileName="A_新版HUD资源/Z-主界面新/ui_panel_zjmtzjdt.png" pkg="h9sioe80" xy="3,3" size="239,31"/>
+    <text id="n2_h1y5" name="txtTitle" xy="59,3" pivot="0.5,0.5" size="126,32" fontSize="22" color="#ffffff" align="center" vAlign="middle" bold="true" strokeColor="#373737" strokeSize="2" text="5000/2000">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </text>
+  </displayList>
+  <ProgressBar titleType="valueAndmax"/>
+</component>

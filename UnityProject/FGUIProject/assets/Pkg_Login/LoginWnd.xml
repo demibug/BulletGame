@@ -29,5 +29,8 @@
     <text id="n11_ejts" name="txtVersion" xy="514,33" size="190,39" fontSize="28" color="#ffffff" align="right" vAlign="middle" strokeColor="#000000" strokeSize="2" text="Ver 1.0.0.1000">
       <relation target="" sidePair="right-center,top-top"/>
     </text>
+    <component id="n16_e16i" name="progress" src="e16i1a" fileName="Element/HUD/HUD_BoxProgress.xml" pkg="hdzsud0l" xy="245,1103">
+      <ProgressBar value="50" max="100"/>
+    </component>
   </displayList>
 </component>

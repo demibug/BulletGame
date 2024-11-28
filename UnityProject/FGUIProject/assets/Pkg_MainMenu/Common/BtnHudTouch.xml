@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="240,245">
+  <controller name="HiddenBg" exported="true" pages="0,false,1,true" selected="0"/>
+  <controller name="Statue" exported="true" pages="0,弹起,1,按下,8,自动" selected="0">
+    <action type="change_page" fromPage="0,1,8" toPage="1" objectId="n1_ax0v" controller="Statue" targetPage="1"/>
+    <action type="change_page" fromPage="0,1,8" toPage="0" objectId="n1_ax0v" controller="Statue" targetPage="0"/>
+    <action type="change_page" fromPage="0,1,8" toPage="8" objectId="n1_ax0v" controller="Statue" targetPage="9"/>
+  </controller>
+  <controller name="BtnType" exported="true" pages="8,主界面-前进（无自动）,0,主界面-前进（有自动）,1,异世界-前进,5,异世界-逃跑,7,主世界-阿拉丁-开始,10,主世界-监狱" selected="0">
+    <action type="change_page" fromPage="8,0,1,5,7,10" toPage="8" objectId="n1_ax0v" controller="ViewType" targetPage="5"/>
+    <action type="change_page" fromPage="8,0,1,5,6,7" toPage="0" objectId="n1_ax0v" controller="ViewType" targetPage="6"/>
+    <action type="change_page" fromPage="8,0,1,5,6,7" toPage="1" objectId="n1_ax0v" controller="ViewType" targetPage="1"/>
+    <action type="change_page" fromPage="8,0,1,5,7,10" toPage="5" objectId="n1_ax0v" controller="ViewType" targetPage="2"/>
+    <action type="change_page" fromPage="8,0,1,5,7,10" toPage="6" objectId="n1_ax0v" controller="ViewType" targetPage="3"/>
+    <action type="change_page" fromPage="8,0,1,5,7,10" toPage="7" objectId="n1_ax0v" controller="ViewType" targetPage="4"/>
+    <action type="change_page" fromPage="8,0,1,5,7,10" toPage="10" objectId="n1_ax0v" controller="ViewType" targetPage="9"/>
+  </controller>
+  <controller name="Ctrl_ActivityGoledouble" pages="0,false,1,true" selected="0"/>
+  <displayList>
+    <loader id="n0_ax0v" name="imgBtnBg" xy="0,0" size="240,245"/>
+    <component id="n1_ax0v" name="btnRoll" src="hc4jis6f" fileName="Component/ComBtnHudTouchCell.xml" pkg="t29o5mno" xy="22,14"/>
+    <component id="n2_y2bd" name="Com3DEffect_Idle" src="w1rmq" fileName="Component/ComSpace.xml" pkg="t29o5mno" xy="120,122" touchable="false"/>
+    <component id="n3_y2bd" name="Com3DEffect_Open" src="w1rmq" fileName="Component/ComSpace.xml" pkg="t29o5mno" xy="120,122" touchable="false"/>
+  </displayList>
+</component>

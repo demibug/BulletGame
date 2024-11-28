@@ -43,7 +43,12 @@ namespace TEngine
         /// <summary>
         /// 窗口组件父节点
         /// </summary>
-        private GObject m_widgetRoot;
+        private GObject m_widgetParent;
+
+        /// <summary>
+        /// 窗口组件
+        /// </summary>
+        private IFUIWidget m_widget;
 
 
         /// <summary>
@@ -200,18 +205,18 @@ namespace TEngine
             return isAllLoaded;
         }
 
-        internal void InternalLoad(FUIBase parentUI, GObject widgetRoot, System.Action<FUIWidget> prepareCallback, System.Object[] userDatas)
+        internal void InternalLoad(FUIBase parentUI, GObject widgetParent, System.Action<FUIWidget> prepareCallback, System.Object[] userDatas)
         {
             ResetChildCanvas(parentUI);
             m_parent = parentUI;
             m_parent?.LstChild.Add(this);
             m_prepareCallback = prepareCallback;
             m_userDatas = userDatas;
-            m_widgetRoot = widgetRoot;
+            m_widgetParent = widgetParent;
 
             // 创建UIObject
             m_uiObject = new GComponent();
-            widgetRoot.asCom?.AddChild(m_uiObject);
+            widgetParent.asCom?.AddChild(m_uiObject);
             m_uiObject.scale = Vector3.one;
             m_uiObject.position = Vector3.zero;
             m_uiObject.displayObject.gameObject.name = GetType().Name;
@@ -234,7 +239,7 @@ namespace TEngine
             m_parent = parentUI;
             m_parent?.LstChild.Add(this);
             m_userDatas = userDatas;
-            m_widgetRoot = widgetRoot;
+            m_widgetParent = widgetRoot;
 
             if (!IsDestroyed && CreateInstance())
             {
@@ -261,7 +266,7 @@ namespace TEngine
             m_parent = parentUI;
             m_parent?.LstChild.Add(this);
             m_userDatas = userDatas;
-            m_widgetRoot = widgetRoot;
+            m_widgetParent = widgetRoot;
 
             if (!IsDestroyed)
             {
@@ -280,6 +285,33 @@ namespace TEngine
                 return null;
             }
         }
+        
+        /// <summary>
+        /// 从GComponent组件创建
+        /// </summary>
+        /// <param name="parentUI"></param>
+        /// <param name="widgetGObject"></param>
+        /// <param name="prepareCallback"></param>
+        /// <param name="userDatas"></param>
+        internal void InternalCreateFromGComp(FUIBase parentUI, GObject widgetGObject, System.Action<FUIWidget> prepareCallback, System.Object[] userDatas)
+        {
+            ResetChildCanvas(parentUI);
+            m_parent = parentUI;
+            m_parent?.LstChild.Add(this);
+            m_prepareCallback = prepareCallback;
+            m_userDatas = userDatas;
+            m_widgetParent = widgetGObject.parent;
+            
+            // 创建UIObject
+            m_uiObject = widgetGObject.asCom;
+            // m_uiObject.scale = Vector3.one;
+            // m_uiObject.position = Vector3.zero;
+            m_uiObject.displayObject.gameObject.name = GetType().Name;
+            m_widget = FUICreateWidget();
+            m_widget.CreateFromGComp(m_uiObject);
+            
+            HandleOpenComplete();
+        }
 
         protected override void OnLoadPackagesComplete(bool isSucceed)
         {
@@ -288,6 +320,11 @@ namespace TEngine
                 // 通知UI管理器 失败
                 CreateFail();
             }
+        }
+
+        protected virtual IFUIWidget FUICreateWidget()
+        {
+            return null;
         }
 
         private bool CreateInstance()
@@ -360,7 +397,7 @@ namespace TEngine
 
         private void HandleOpenComplete()
         {
-            if (Create(m_widgetRoot))
+            if (Create(m_widgetParent))
             {
                 // 通知UI管理器 成功
                 m_prepareCallback?.Invoke(this);
@@ -377,11 +414,11 @@ namespace TEngine
         /// 创建窗口内嵌的界面
         /// </summary>
         /// <param name="parentUI">父节点UI</param>
-        /// <param name="widgetRoot">组件根节点</param>
+        /// <param name="widgetParent">组件根节点</param>
         /// <returns></returns>
-        private bool Create(GObject widgetRoot)
+        private bool Create(GObject widgetParent)
         {
-            if (widgetRoot == null || widgetRoot.isDisposed)
+            if (widgetParent == null || widgetParent.isDisposed)
             {
                 Log.Error("Load FUIWidget Failed because widgetRoot is null.");
                 return false;
@@ -427,8 +464,7 @@ namespace TEngine
             }
 
             Name = GetType().Name;
-            GameObject go = uiObject.displayObject.gameObject;
-            Transform = go.GetComponent<Transform>();
+            Transform = uiObject.displayObject.gameObject.transform;
             //RectTransform = Transform as RectTransform;
             //GameObject = go;
             //Log.Assert(RectTransform != null, $"{go.name} ui base element need to be RectTransform");
@@ -494,7 +530,7 @@ namespace TEngine
 
             m_uiObject?.Dispose();
             m_uiObject = null;
-            m_widgetRoot = null;
+            m_widgetParent = null;
             m_userDatas = null;
             IsDestroyed = true;
         }

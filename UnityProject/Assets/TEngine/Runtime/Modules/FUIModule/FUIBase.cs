@@ -423,6 +423,55 @@ namespace TEngine
         }
 
         /// <summary>
+        /// 从特定GComponent创建窗口组件
+        /// </summary>
+        /// <param name="parentUI"></param>
+        /// <param name="widgetObj"></param>
+        /// <param name="prepareCallback"></param>
+        /// <param name="userDatas"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T CreateWidgetFromGComp<T>(FUIBase parentUI, GObject widgetObj, System.Action<T> prepareCallback, params System.Object[] userDatas) where T : FUIWidget, new()
+        {
+            FUIBase _parentUI = parentUI;
+            if (parentUI != null && widgetObj != null)
+            {
+                T widget = CreateWidgetInstance<T>();
+                widget.InternalCreateFromGComp(_parentUI, widgetObj, prepareCallback as System.Action<FUIWidget>, userDatas);
+                return widget;
+            }
+
+            return null;
+        }
+        
+        /// <summary>
+        /// 从特定GComponent创建窗口组件 父UI为当前UI (不会主动加载组件所需的包,需要先手动加载)
+        /// 需要调用 LoadPackages 主动加载一次包
+        /// </summary>
+        /// <typeparam name="T">窗口组件类型</typeparam>
+        /// <param name="parentObj">窗口组件父节点</param>
+        /// <param name="userDatas">自定义数据</param>
+        /// <returns>窗口组件</returns>
+        public T CreateWidgetFromGComp<T>(GObject widgetObj, params System.Object[] userDatas) where T : FUIWidget, new()
+        {
+            return CreateWidgetFromGComp<T>(this, widgetObj, null, userDatas);
+        }
+
+        /// <summary>
+        /// 异步创建窗口组件 父UI,父节点都自定义(不会主动加载组件所需的包，需要先手动加载)
+        /// 需要调用 LoadPackages 主动加载一次包
+        /// </summary>
+        /// <typeparam name="T">窗口组件类型</typeparam>
+        /// <param name="parentUI">创建窗口组件的父UI</param>
+        /// <param name="parentObj">窗口组件父节点</param>
+        /// <param name="userDatas">自定义数据</param>
+        /// <returns>窗口组件</returns>
+        public T CreateWidgetFromGComp<T>(FUIBase parentUI, GObject widgetObj, params System.Object[] userDatas) where T : FUIWidget, new()
+        {
+            return CreateWidgetFromGComp<T>(parentUI, widgetObj, null, userDatas);
+        }
+
+        /// <summary>
         /// 调整图标数量
         /// 常用于Icon创建
         /// </summary>

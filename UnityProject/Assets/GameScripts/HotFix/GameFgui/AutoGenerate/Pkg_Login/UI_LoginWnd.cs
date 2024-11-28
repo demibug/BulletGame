@@ -6,7 +6,7 @@ using FairyGUI.Utils;
 
 namespace Pkg_Login
 {
-    public class UI_LoginWnd : GComponent
+    public class UI_LoginWnd : GComponent, TEngine.IFUIWidget
     {
         public const string UIPackageName = "Pkg_Login";
         public const string UIResName = "LoginWnd";
@@ -21,6 +21,7 @@ namespace Pkg_Login
         public GTextInput txtServerInput;
         public GTextInput txtUserInput;
         public GTextField txtVersion;
+        public GProgressBar progress;
         public const string URL = "ui://y3d6pccbjjos0";
 
         public static UI_LoginWnd CreateInstance()
@@ -46,20 +47,25 @@ namespace Pkg_Login
             UIPackage.CreateObjectAsync(UIPackageName, UIResName, callback);
         }
 
+        public void CreateFromGComp(GComponent rootComp)
+        {
+            imgBg = (GLoader)rootComp?.GetChildAt(0);
+            btnLogin = (GButton)rootComp?.GetChildAt(1);
+            imgLoginBg = (GLoader)rootComp?.GetChildAt(2);
+            imgLogo = (GLoader)rootComp?.GetChildAt(3);
+            txtUserTitle = (GTextField)rootComp?.GetChildAt(4);
+            txtServerTitle = (GTextField)rootComp?.GetChildAt(5);
+            txtErrorTip = (GTextField)rootComp?.GetChildAt(6);
+            txtServerInput = (GTextInput)rootComp?.GetChildAt(7);
+            txtUserInput = (GTextInput)rootComp?.GetChildAt(8);
+            txtVersion = (GTextField)rootComp?.GetChildAt(9);
+            progress = (GProgressBar)rootComp?.GetChildAt(10);
+        }
+
         public override void ConstructFromXML(XML xml)
         {
             base.ConstructFromXML(xml);
-
-            imgBg = (GLoader)GetChildAt(0);
-            btnLogin = (GButton)GetChildAt(1);
-            imgLoginBg = (GLoader)GetChildAt(2);
-            imgLogo = (GLoader)GetChildAt(3);
-            txtUserTitle = (GTextField)GetChildAt(4);
-            txtServerTitle = (GTextField)GetChildAt(5);
-            txtErrorTip = (GTextField)GetChildAt(6);
-            txtServerInput = (GTextInput)GetChildAt(7);
-            txtUserInput = (GTextInput)GetChildAt(8);
-            txtVersion = (GTextField)GetChildAt(9);
+            CreateFromGComp(this);
         }
     }
 }
