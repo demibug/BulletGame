@@ -4,18 +4,17 @@ using GameAudio;
 using GameData;
 using Pkg_Login;
 using System.Collections.Generic;
-using System.Threading;
 using TEngine;
 using UnityEngine;
 using Language = GameData.GDefine.Language;
 
 namespace GameLogic
 {
-    [FUIWindow(FUILayer.Top, fullScreen: true,  
-        FUIPackageDefine.Res_Common, 
+    [FUIWindow(FUILayer.Top, fullScreen: true,
+        FUIPackageDefine.Res_Common,
         FUIPackageDefine.Res_MainMenu,
-        FUIPackageDefine.Pkg_Login,
-        FUIPackageDefine.Pkg_MainMenu)]
+        FUIPackageDefine.Pkg_MainMenu,
+        FUIPackageDefine.Pkg_Login)]
     public class LoginWnd : FUIWindow
     {
         private UI_LoginWnd m_view;
@@ -52,7 +51,7 @@ namespace GameLogic
             tpw.View.value = 90;
             tpw.View.max = 100;
             tpw.View.txtTitle.text = "8880";
-            
+
             FUIExtension.SetFuiTexture(m_view.imgBg, "AssetLoad/ImageBg/loading_bg", false, "", true);
             // FUIExtension.SetFuiTexture(m_view.imgLoginBg, "login_bg");
 

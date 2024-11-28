@@ -1,3 +1,4 @@
+using GameNetwork.UnityWebSocket;
 using System;
 using System.Collections.Generic;
 using TEngine;
@@ -107,7 +108,7 @@ namespace GameNetwork
             // 发送请求
             m_UnityWebRequest.SendWebRequest();
             // 回收buffer
-            ShortConnectStreamBufferPool.RecycleBuffer(postData);
+            UnityWebSocketStreamBufferPool.RecycleBuffer(postData);
         }
 
         /// <summary>
@@ -153,7 +154,7 @@ namespace GameNetwork
 
             m_UnityWebRequest.SendWebRequest();
             // 回收buffer
-            ShortConnectStreamBufferPool.RecycleBuffer(postData);
+            UnityWebSocketStreamBufferPool.RecycleBuffer(postData);
         }
 
         /// <summary>

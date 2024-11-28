@@ -1,7 +1,6 @@
 
 using GameData;
-using GameNetwork.ShorConnect;
-using GameNetwork.ShortConnection;
+using GameNetwork.UnityWebSocket;
 using System;
 using System.Collections.Generic;
 using TEngine;
@@ -9,20 +8,20 @@ using UnityEngine;
 
 namespace GameNetwork
 {
-    public class ShortConnectClient
+    public class UnityWebSocketClient
     {
         public event Action<NetworkChannelStates, string> NetWorkStateChangedEvent;
         private const int DEFAULT_CONNECTION_TIMEOUT = 30;
-        private ShortConnectEventManager _eventManager;
+        private UnityWebSocketEventManager _eventManager;
         private bool _disposed;
         private int _reqUid;
         private Dictionary<uint, Action<string, string>> _requestHandlers;
-        private ShortConnectProtobufSerializer _protobufSerializer;
+        private UnityWebSocketProtobufSerializer _protobufSerializer;
         private Dictionary<string, string> _header;
         private string _host;
         private int _port;
 
-        public ShortConnectClient(string host, int port)
+        public UnityWebSocketClient(string host, int port)
         {
             Init();
             _host = host;
@@ -31,7 +30,7 @@ namespace GameNetwork
             GameEvent.AddEventListener<WebRequestFailureEventArgs>(GEvent.WebRequestSystemEventFailure, OnWebRequestFailure);
         }
 
-        ~ShortConnectClient()
+        ~UnityWebSocketClient()
         {
             Dispose();
             GameEvent.RemoveEventListener<WebRequestSuccessEventArgs>(GEvent.WebRequestSystemEventSuccess, OnWebRequestSuccess);
@@ -40,8 +39,8 @@ namespace GameNetwork
 
         private void Init()
         {
-            _eventManager = new ShortConnectEventManager();
-            _protobufSerializer = new ShortConnectProtobufSerializer(ShortConnectProtobufSerializer.SerializationFormat.Protobuf);
+            _eventManager = new UnityWebSocketEventManager();
+            _protobufSerializer = new UnityWebSocketProtobufSerializer(UnityWebSocketProtobufSerializer.SerializationFormat.Protobuf);
             _header = new Dictionary<string, string>();
         }
 
@@ -62,12 +61,12 @@ namespace GameNetwork
                 byte[] data = args.GetWebResponseBytes();
                 if (data != null)
                 {
-                    ShortConnectByteBuffer scbb = ShortConnectByteBuffer.ResponseByteBuffer(data);
+                    UnityWebSocketByteBuffer scbb = UnityWebSocketByteBuffer.ResponseByteBuffer(data);
                     int rid = scbb.ReadInt();
                     int pushLen = scbb.ReadInt();
                     int respLen = scbb.ReadInt();
                     int len = data.Length;
-                    int headLen = ShortConnectDefines.ReqUidLen + ShortConnectDefines.PushDataLen + ShortConnectDefines.RespDataLen;
+                    int headLen = UnityWebSocketDefines.ReqUidLen + UnityWebSocketDefines.PushDataLen + UnityWebSocketDefines.RespDataLen;
                     if (pushLen != 0)
                     {
                         byte[] pushPb = scbb.ReadBytes(len - headLen - respLen, true);
@@ -76,7 +75,7 @@ namespace GameNetwork
                             OnPushRespone(pushPb);
                         }
 
-                        ShortConnectStreamBufferPool.RecycleBuffer(pushPb);
+                        UnityWebSocketStreamBufferPool.RecycleBuffer(pushPb);
                     }
 
                     if (rid != 0)
@@ -87,7 +86,7 @@ namespace GameNetwork
                             OnRequestResponse(rid, respPb);
                         }
 
-                        ShortConnectStreamBufferPool.RecycleBuffer(respPb);
+                        UnityWebSocketStreamBufferPool.RecycleBuffer(respPb);
                     }
                 }
             }
@@ -132,7 +131,7 @@ namespace GameNetwork
             }
 
             byte[] data = _protobufSerializer.Encode(msg);
-            ShortConnectByteBuffer scbb = ShortConnectByteBuffer.RequestByteBuffer(_reqUid, data);
+            UnityWebSocketByteBuffer scbb = UnityWebSocketByteBuffer.RequestByteBuffer(_reqUid, data);
 
             string uri = $"{_host}:{_port}{route}";
             if (Debug.isDebugBuild)
@@ -156,7 +155,7 @@ namespace GameNetwork
 
         private void NotifyInternal(string route, object msg)
         {
-            ShortConnectByteBuffer scbb = ShortConnectByteBuffer.RequestByteBuffer(_reqUid, _protobufSerializer.Encode(msg));
+            UnityWebSocketByteBuffer scbb = UnityWebSocketByteBuffer.RequestByteBuffer(_reqUid, _protobufSerializer.Encode(msg));
             Dictionary<string, string> header = null;
             if (DataSystem.Instance.Login.GameToken != null)
             {
@@ -214,7 +213,7 @@ namespace GameNetwork
 
         public void Dispose()
         {
-            Debug.Log("ShortConnectClient Disposed");
+            Debug.Log("UnityWebSocketClient Disposed");
             if (_disposed)
                 return;
 

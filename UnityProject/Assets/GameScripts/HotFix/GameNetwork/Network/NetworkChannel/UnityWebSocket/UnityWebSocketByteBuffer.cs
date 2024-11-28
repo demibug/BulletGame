@@ -1,21 +1,21 @@
-using GameNetwork.ShorConnect;
+using GameNetwork.UnityWebSocket;
 using System;
 using System.Text;
 using TEngine;
 
 namespace GameNetwork
 {
-    public class ShortConnectByteBuffer
+    public class UnityWebSocketByteBuffer
     {
-        public static ShortConnectByteBuffer RequestByteBuffer(int reqUid, byte[] data)
+        public static UnityWebSocketByteBuffer RequestByteBuffer(int reqUid, byte[] data)
         {
             // size : 【rid, 数据】
-            int size = ShortConnectDefines.ReqUidLen + data.Length;
+            int size = UnityWebSocketDefines.ReqUidLen + data.Length;
             // TODO: BufferPool
             // byte[] bytes = BufferPool.Get(size, false);
             // byte[] bytes = new byte[size];
-            byte[] bytes = ShortConnectStreamBufferPool.GetBuffer(size);
-            ShortConnectByteBuffer byteBuffer = new ShortConnectByteBuffer();
+            byte[] bytes = UnityWebSocketStreamBufferPool.GetBuffer(size);
+            UnityWebSocketByteBuffer byteBuffer = new UnityWebSocketByteBuffer();
             byteBuffer.buffer = bytes;
 
             byteBuffer.WriteInt(reqUid);
@@ -24,15 +24,15 @@ namespace GameNetwork
             return byteBuffer;
         }
 
-        public static ShortConnectByteBuffer GateRequestByteBuffer(byte[] data)
+        public static UnityWebSocketByteBuffer GateRequestByteBuffer(byte[] data)
         {
             // size : 【rid, 数据】
             int size = data.Length;
             // TODO: BufferPool
             // byte[] bytes = BufferPool.Get(size, false);
             // byte[] bytes = new byte[size];
-            byte[] bytes = ShortConnectStreamBufferPool.GetBuffer(size);
-            ShortConnectByteBuffer byteBuffer = new ShortConnectByteBuffer();
+            byte[] bytes = UnityWebSocketStreamBufferPool.GetBuffer(size);
+            UnityWebSocketByteBuffer byteBuffer = new UnityWebSocketByteBuffer();
             byteBuffer.buffer = bytes;
 
             byteBuffer.WriteBytes(data);
@@ -40,9 +40,9 @@ namespace GameNetwork
             return byteBuffer;
         }
 
-        public static ShortConnectByteBuffer ResponseByteBuffer(byte[] data)
+        public static UnityWebSocketByteBuffer ResponseByteBuffer(byte[] data)
         {
-            ShortConnectByteBuffer byteBuffer = new ShortConnectByteBuffer();
+            UnityWebSocketByteBuffer byteBuffer = new UnityWebSocketByteBuffer();
             byteBuffer.buffer = data;
             return byteBuffer;
         }
@@ -158,7 +158,7 @@ namespace GameNetwork
                     // TODO: BufferPool
                     // bytes = BufferPool.Get(count, false);
                     // bytes = new byte[count];
-                    bytes = ShortConnectStreamBufferPool.GetBuffer(count);
+                    bytes = UnityWebSocketStreamBufferPool.GetBuffer(count);
                 }
                 else
                 {

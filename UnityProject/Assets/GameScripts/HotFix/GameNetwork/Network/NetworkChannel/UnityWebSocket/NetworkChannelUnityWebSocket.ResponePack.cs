@@ -3,15 +3,15 @@ using TEngine;
 
 namespace GameNetwork
 {
-    public partial class NetworkChannelBestWebSocket
+    public partial class NetworkChannelUnityWebSocket
     {
         private static int _mCurrentRuntimeId = 0;
 
-        private sealed class ResponePack<T> : NetworkChannelBestWebSocket.IResponePack
+        private sealed class ResponePack<T> : NetworkChannelUnityWebSocket.IResponePack
         {
-            public static NetworkChannelBestWebSocket.ResponePack<T> Create(Action<T> action, Action<object> errorAction)
+            public static NetworkChannelUnityWebSocket.ResponePack<T> Create(Action<T> action, Action<object> errorAction)
             {
-                NetworkChannelBestWebSocket.ResponePack<T> responePack = MemoryPool.Acquire<NetworkChannelBestWebSocket.ResponePack<T>>();
+                NetworkChannelUnityWebSocket.ResponePack<T> responePack = MemoryPool.Acquire<NetworkChannelUnityWebSocket.ResponePack<T>>();
                 responePack.Id = ++_mCurrentRuntimeId;
                 responePack._mAction = action;
                 responePack._mErrorAction = errorAction;
@@ -23,7 +23,7 @@ namespace GameNetwork
             /// <summary>
             /// 1成功 0 未使用 -1 失败
             /// </summary>
-            public NetworkChannelBestWebSocket.ResponePackState State { get; set; }
+            public NetworkChannelUnityWebSocket.ResponePackState State { get; set; }
 
             public T Data { get; set; }
             public object Error { get; set; }
@@ -51,7 +51,7 @@ namespace GameNetwork
             public void Clear()
             {
                 Id = 0;
-                State = NetworkChannelBestWebSocket.ResponePackState.Unknow;
+                State = NetworkChannelUnityWebSocket.ResponePackState.Unknow;
                 _mAction = null;
                 _mErrorAction = null;
                 Data = default(T);
@@ -70,7 +70,7 @@ namespace GameNetwork
         {
             public abstract int Id { get; set; }
 
-            public abstract NetworkChannelBestWebSocket.ResponePackState State { get; set; }
+            public abstract NetworkChannelUnityWebSocket.ResponePackState State { get; set; }
 
             public abstract void Handle();
             public abstract void HandleError();

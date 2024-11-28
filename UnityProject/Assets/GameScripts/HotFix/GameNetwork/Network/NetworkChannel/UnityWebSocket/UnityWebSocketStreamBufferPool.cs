@@ -3,9 +3,9 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Threading;
 
-namespace GameNetwork.ShorConnect
+namespace GameNetwork.UnityWebSocket
 {
-    public sealed class ShortConnectStreamBufferPool
+    public sealed class UnityWebSocketStreamBufferPool
     {
         private const int MAX_TOTAL_POOL_SIZE = 1000; // 总缓存池大小限制
 
@@ -190,7 +190,7 @@ namespace GameNetwork.ShorConnect
 
         public long Position() => mMemStream?.Position ?? 0;
 
-        public byte[] ToArray() => ShortConnectStreamBufferPool.DeepCopy(mBuffer);
+        public byte[] ToArray() => UnityWebSocketStreamBufferPool.DeepCopy(mBuffer);
 
         public void ClearBuffer() => Array.Clear(mBuffer, 0, mBuffer.Length);
 

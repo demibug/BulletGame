@@ -10,7 +10,7 @@ namespace GameLogic
     public class TestProgressWgt : FUIWidget
     {
         private UI_HUD_BoxProgress m_view;
-        public UI_HUD_BoxProgress View { get  { return m_view;  } }
+        public UI_HUD_BoxProgress View { get { return m_view; } }
 
         public override void CheckBindAll()
         {
@@ -38,7 +38,7 @@ namespace GameLogic
         {
         }
 
-        
+
         private void OnLoadWorldComplete()
         {
             FUISystem.Instance.CloseUI<LoginWnd>();
