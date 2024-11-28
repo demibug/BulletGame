@@ -2,6 +2,7 @@
   "dependencies": {
     "com.code-philosophy.hybridclr": "https://gitee.com/focus-creative-games/hybridclr_unity.git",
     "com.e7.protobuf-unity": "https://github.com/5argon/protobuf-unity.git",
+    "com.psygames.unitywebsocket": "https://github.com/psygames/UnityWebSocket.git#upm",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ide.rider": "3.0.34",

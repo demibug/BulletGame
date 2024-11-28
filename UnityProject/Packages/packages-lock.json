@@ -20,6 +20,13 @@
       "dependencies": {},
       "hash": "948ab23d0961066b135f52cbb39ac3bc639361a1"
     },
+    "com.psygames.unitywebsocket": {
+      "version": "https://github.com/psygames/UnityWebSocket.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0576fdc02f65c481a1f1d8833a15186d7357e05d"
+    },
     "com.tuyoogame.yooasset": {
       "version": "file:YooAsset",
       "depth": 0,
