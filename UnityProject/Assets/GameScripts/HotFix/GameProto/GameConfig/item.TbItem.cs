@@ -9,7 +9,6 @@
 
 using Luban;
 
-
 namespace GameConfig.item
 {
 public partial class TbItem

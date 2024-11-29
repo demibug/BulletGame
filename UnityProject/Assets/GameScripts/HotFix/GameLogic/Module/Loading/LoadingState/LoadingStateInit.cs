@@ -1,4 +1,3 @@
-using GameData;
 using TEngine;
 using ProcedureOwner = TEngine.IFsm<GameLogic.LoadingSystem>;
 

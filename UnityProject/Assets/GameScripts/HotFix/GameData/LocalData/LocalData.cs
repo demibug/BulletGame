@@ -1,7 +1,7 @@
-using GameData.GDefine;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using GameData.GDefine;
 using TEngine;
 using UnityEngine;
 using Language = GameData.GDefine.Language;

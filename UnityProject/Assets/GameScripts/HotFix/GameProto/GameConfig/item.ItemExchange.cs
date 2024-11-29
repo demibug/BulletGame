@@ -9,7 +9,6 @@
 
 using Luban;
 
-
 namespace GameConfig.item
 {
 public sealed partial class ItemExchange : Luban.BeanBase

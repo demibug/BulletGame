@@ -1,6 +1,6 @@
-using GameNetwork.UnityWebSocket;
 using System;
 using System.Collections.Generic;
+using GameNetwork.UnityWebSocket;
 using TEngine;
 using UnityEngine.Networking;
 

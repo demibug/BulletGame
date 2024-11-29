@@ -1,6 +1,6 @@
-﻿using UnityEngine.UI;
-using System;
+﻿using System;
 using TEngine;
+using UnityEngine.UI;
 
 namespace GameMain
 {
