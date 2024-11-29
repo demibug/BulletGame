@@ -1,0 +1,16 @@
+{
+    "name": "TGS.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9477579f2aa6c41ddb4ef4f1a9b6745a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
