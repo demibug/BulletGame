@@ -9,7 +9,7 @@ namespace GameNetwork
 {
     public partial class NetworkChannelUnityWebSocket : NetworkChannelBase
     {
-        private ShortConnectClient m_client;
+        private UnityWebSocketClient m_client;
         private ConcurrentQueue<IResponePack> m_pendingPacks;
         private ConcurrentDictionary<int, IResponePack> m_packPool;
         private Dictionary<int, int> _mRouteIdMap;
@@ -39,7 +39,7 @@ namespace GameNetwork
 
             m_SendState.Reset();
 
-            m_client = new ShortConnectClient(ipAddress, port);
+            m_client = new UnityWebSocketClient(ipAddress, port);
             if (m_client == null)
             {
                 string errorMessage = "Initialize network channel failure.";

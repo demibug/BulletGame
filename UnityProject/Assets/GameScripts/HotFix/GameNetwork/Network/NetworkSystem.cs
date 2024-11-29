@@ -13,8 +13,8 @@ namespace GameNetwork
         private StringBuilder _mStringBuilder = new StringBuilder();
 
         // private NetworkChannelPitaya m_mainChannel;
-
-        private NetworkChannelShortConnect m_mainChannel;
+        // private NetworkChannelShortConnect m_mainChannel;
+        private NetworkChannelUnityWebSocket m_mainChannel;
         private Action m_onConnected;
 
         #region 事件管理器
@@ -49,13 +49,14 @@ namespace GameNetwork
             {
                 if (!GameModule.Network.HasNetworkChannel(channelName))
                 {
-                    m_mainChannel = new NetworkChannelShortConnect(channelName);
                     // m_mainChannel = new NetworkChannelPitaya(channelName);
+                    // m_mainChannel = new NetworkChannelShortConnect(channelName);
+                    m_mainChannel = new NetworkChannelUnityWebSocket(channelName);
                     GameModule.Network.CreateNetworkChannel(channelName, m_mainChannel);
                 }
                 else
                 {
-                    m_mainChannel = GameModule.Network.GetNetworkChannel(channelName) as NetworkChannelShortConnect;
+                    m_mainChannel = GameModule.Network.GetNetworkChannel(channelName) as NetworkChannelUnityWebSocket;
                     // m_mainChannel = GameModule.Network.GetNetworkChannel(channelName) as NetworkChannelPitaya;
                 }
             }
