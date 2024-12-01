@@ -28,8 +28,7 @@ namespace BattleCore
             localTransformLookup.Update(ref state);
             EndSimulationEntityCommandBufferSystem.Singleton ecbSystem =
                 SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
-            EntityCommandBuffer.ParallelWriter ecb
-                = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter();
+            EntityCommandBuffer.ParallelWriter ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter();
             float deltaTime = SystemAPI.Time.DeltaTime;
 
             state.Dependency = new ManSpawnerJob()
@@ -63,8 +62,8 @@ namespace BattleCore
                     if (manSpawnerUpdate.updateTime <= 0)
                     {
                         // First delete all existing entities
-                        // foreach (ManSpawnerAnimatorBufferElement crowdSpawnerAnimator in manSpawnerAnimators)
-                        //     ecb.DestroyEntity(sortKey, crowdSpawnerAnimator.gpuEcsAnimator);
+                        foreach (ManSpawnerAnimatorBufferElement crowdSpawnerAnimator in manSpawnerAnimators)
+                            ecb.DestroyEntity(sortKey, crowdSpawnerAnimator.gpuEcsAnimator);
 
                         DynamicBuffer<ManSpawnerAnimatorBufferElement> newManSpawnerAnimators =
                             ecb.SetBuffer<ManSpawnerAnimatorBufferElement>(sortKey, manSpawnerEntity);
@@ -80,8 +79,7 @@ namespace BattleCore
                             newManSpawnerAnimators.Add(new ManSpawnerAnimatorBufferElement()
                             {
                                 gpuEcsAnimator = CreateNewAnimator(ref manSpawnerUpdate, manSpawner, sortKey, 
-                                    pos, xOffset, zOffset,
-                                    manSpawnerAnimatorPrefabs)
+                                    pos, xOffset, zOffset, manSpawnerAnimatorPrefabs)
                             });
                         }
                     
@@ -100,9 +98,8 @@ namespace BattleCore
                 in DynamicBuffer<ManSpawnerAnimatorPrefabBufferElement> manSpawnerAnimatorPrefabs)
             {
                 // Select a random prefab from the available buffer
-                // Entity gpuEcsAnimatorPrefab = manSpawnerAnimatorPrefabs[
-                //     manSpawnerUpdate.random.NextInt(0, manSpawnerAnimatorPrefabs.Length)].gpuEcsAnimatorPrefab;
-                Entity gpuEcsAnimatorPrefab = manSpawnerAnimatorPrefabs[0].gpuEcsAnimatorPrefab;
+                Entity gpuEcsAnimatorPrefab = manSpawnerAnimatorPrefabs[
+                    manSpawnerUpdate.random.NextInt(0, manSpawnerAnimatorPrefabs.Length)].gpuEcsAnimatorPrefab;
                 // Spawn a character
                 Entity gpuEcsAnimator = ecb.Instantiate(sortKey, gpuEcsAnimatorPrefab);
 
@@ -118,9 +115,8 @@ namespace BattleCore
                 });
 
                 // Pick a random animation ID from the available animations
-                DynamicBuffer<GpuEcsAnimationDataBufferElement> animationDataBuffer =
-                    gpuEcsAnimationDataBufferLookup[gpuEcsAnimatorPrefab];
-                int animationID = (int)TestManAnimationId.stand;
+                DynamicBuffer<GpuEcsAnimationDataBufferElement> animationDataBuffer = gpuEcsAnimationDataBufferLookup[gpuEcsAnimatorPrefab];
+                int animationID = manSpawnerUpdate.random.NextInt(0, animationDataBuffer.Length);
 
                 // Kick off the correct animation with a random time offset so to avoid synchronized animations
                 ecb.SetComponent(sortKey, gpuEcsAnimator, new GpuEcsAnimatorControlComponent()
@@ -131,7 +127,7 @@ namespace BattleCore
                         blendFactor = 0,
                         speedFactor = 1f
                     },
-                    startNormalizedTime = manSpawnerUpdate.random.NextFloat(0f, 1f),
+                    startNormalizedTime = 0,
                     transitionSpeed = 0
                 });
                 return gpuEcsAnimator;

@@ -152,7 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gpuEcsAnimatorPrefabs:
-  - {fileID: 1811415600887194803, guid: 0d11afc5a91c57549948f2fd115e6fa0, type: 3}
+  - {fileID: 1471342070543113558, guid: b4c23a50e10ffc64c94b01dee09b8a47, type: 3}
+  - {fileID: 6730579677890170925, guid: 1d2a511214ffabf438a1e3e39a984840, type: 3}
 --- !u!4 &1633002272
 Transform:
   m_ObjectHideFlags: 0

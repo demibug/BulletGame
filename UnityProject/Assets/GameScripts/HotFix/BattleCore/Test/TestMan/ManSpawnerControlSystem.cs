@@ -15,16 +15,16 @@ namespace BattleCore
         {
             if (needSpawn)
             {
+                needSpawn = false;
                 Entities.ForEach((ref ManSpawnerUpdateComponent manSpawnerUpdate) =>
                 {
-                    manSpawnerUpdate.needSpawn = needSpawn;
+                    manSpawnerUpdate.needSpawn = true;
                     manSpawnerUpdate.spawnCount = spawnCount;
                     manSpawnerUpdate.basePos = basePos;
                     manSpawnerUpdate.xOffset = xOffset;
                     manSpawnerUpdate.zOffset = zOffset;
                     manSpawnerUpdate.updateTime = 0.5f;
                 }).WithoutBurst().Run();
-                needSpawn = false;
             }
         }
     }

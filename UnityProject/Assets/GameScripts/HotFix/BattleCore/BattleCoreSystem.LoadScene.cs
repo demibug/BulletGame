@@ -27,7 +27,7 @@ namespace BattleCore
             }
             
             SceneRoot = GameObject.Find("scene_root");
-            TestSystem.Instance.TestMan().Forget();
+            TestSystem.Instance.Init();
         }
     }
 }

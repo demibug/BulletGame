@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,15 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9d300feba44a5eaaec096bd967dd19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cols: 200
-  rows: 200
   spacing: 1.5
   gpuEcsAnimatorPrefabs:
   - {fileID: 3333379788404040966, guid: d59b34e51aae1fb4c8737ba25ee1568a, type: 3}
-  - {fileID: 1471342070543113558, guid: b4c23a50e10ffc64c94b01dee09b8a47, type: 3}
-  - {fileID: 4823826382114525646, guid: 343658c97a5584442b6e15fe45df0f7e, type: 3}
-  - {fileID: 7023464405511475250, guid: 11a026b0cbd798a47bc9a96ef0f6f88b, type: 3}
-  - {fileID: 6730579677890170925, guid: 1d2a511214ffabf438a1e3e39a984840, type: 3}
 --- !u!4 &960139479
 Transform:
   m_ObjectHideFlags: 0
@@ -168,11 +161,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960139477}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 960139479}
