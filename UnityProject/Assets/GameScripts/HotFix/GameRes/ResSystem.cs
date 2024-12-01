@@ -27,6 +27,32 @@ namespace GameRes
         {
             return GameModule.Resource.LoadAsset<T>(location, packageName);
         }
+        
+        /// <summary>
+        /// 同步加载游戏物体并实例化。
+        /// </summary>
+        /// <param name="location">资源的定位地址。</param>
+        /// <param name="parent">资源实例父节点。</param>
+        /// <param name="packageName">指定资源包的名称。不传使用默认资源包。</param>
+        /// <returns>资源实例。</returns>
+        public GameObject LoadGameObject(string location, Transform parent = null, string packageName = "")
+        {
+            return GameModule.Resource.LoadGameObject(location, parent, packageName);
+        }
+        
+        /// <summary>
+        /// 异步加载游戏物体并实例化。
+        /// </summary>
+        /// <param name="location">资源定位地址。</param>
+        /// <param name="parent">资源实例父节点。</param>
+        /// <param name="cancellationToken">取消操作Token。</param>
+        /// <param name="packageName">指定资源包的名称。不传使用默认资源包。</param>
+        /// <returns>异步游戏物体实例。</returns>
+        public async UniTask<GameObject> LoadGameObjectAsync(string location, Transform parent = null, CancellationToken cancellationToken = default,
+            string packageName = "")
+        {
+            return await GameModule.Resource.LoadGameObjectAsync(location, parent, cancellationToken, packageName);
+        }
 
         /// <summary>
         /// 异步加载资源。

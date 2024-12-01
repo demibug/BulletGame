@@ -1,0 +1,33 @@
+{
+    "name": "BattleCore",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cbb0d51b565003841ae81cdbaf747114",
+        "GUID:fd26886bff18cb64d8d5acf14f5f28d9",
+        "GUID:e06eb3882bd08c849b11428f630737c1",
+        "GUID:39f4522107d3be244974f7ca4c807141",
+        "GUID:72bdc451db884c846b5376d9763ca4bf",
+        "GUID:8f58f15387c7a6f4fad9857024eb47f7",
+        "GUID:be7c503b1557af441be7307097afdebe",
+        "GUID:6fceba96ecc34d34bb88e7c795c2b21e",
+        "GUID:24c092aee38482f4e80715eaa8148782",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:fdb14afa911c65e4982db867bfd7afce",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:7a450cf7ca9694b5a8bfa3fd83ec635a",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:8819f35a0fc84499b990e90a4ca1911f",
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:a5baed0c9693541a5bd947d336ec7659",
+        "GUID:d8b63aba1907145bea998dd612889d6b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

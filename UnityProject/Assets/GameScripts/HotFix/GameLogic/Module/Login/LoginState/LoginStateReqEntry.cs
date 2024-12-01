@@ -21,6 +21,8 @@ namespace GameLogic
             RequestEntry();
 
             GameEvent.Send(Constant.LauncherEvent.LauncherEventLoginProgress, LoginSystem.LoginProgressEntry);
+            
+            ChangeState<LoginStateFinish>(_mFsm);
         }
 
         protected override void OnLeave(ProcedureOwner fsm, bool isShutdown)
