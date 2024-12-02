@@ -2,9 +2,9 @@ using GameScene;
 using TEngine;
 using UnityEngine;
 
-namespace BattleCore
+namespace BattleMain
 {
-    public partial class BattleCoreSystem : BehaviourSingleton<BattleCoreSystem>
+    public partial class BattleMainSystem : BehaviourSingleton<BattleMainSystem>
     {
         private string m_sceneRes;
 
@@ -27,7 +27,7 @@ namespace BattleCore
             }
 
             SceneRoot = GameObject.Find("scene_root");
-            TestSystem.Instance.Init();
+            // TestSystem.Instance.Init();
         }
     }
 }

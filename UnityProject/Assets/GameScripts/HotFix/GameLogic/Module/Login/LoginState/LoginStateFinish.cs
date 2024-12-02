@@ -1,4 +1,4 @@
-using BattleCore;
+using BattleMain;
 using Cysharp.Threading.Tasks;
 using TEngine;
 using ProcedureOwner = TEngine.IFsm<GameLogic.LoginSystem>;
@@ -28,7 +28,7 @@ namespace GameLogic
 
             GameEvent.Send(Constant.LauncherEvent.LauncherEventLoadFinish);
             FUISystem.Instance.CloseUI<LoginWnd>();
-            BattleCoreSystem.Instance.Init();
+            BattleMainSystem.Instance.Init();
         }
     }
 }

@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace BattleCore
+namespace BattleMain
 {
     [BurstCompile]
     public partial struct ManSpawnerSystem : ISystem

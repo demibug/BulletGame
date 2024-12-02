@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
-namespace BattleCore
+namespace BattleMain
 {
     public class ManSpawnerBehaviour : MonoBehaviour
     {

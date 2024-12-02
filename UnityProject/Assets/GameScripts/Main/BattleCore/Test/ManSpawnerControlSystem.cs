@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace BattleCore
+namespace BattleMain
 {
     public partial class ManSpawnerControlSystem : SystemBase
     {
