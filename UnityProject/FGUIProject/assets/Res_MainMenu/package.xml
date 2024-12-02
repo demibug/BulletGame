@@ -15,17 +15,9 @@
     <image id="e16i5z" name="UI_panel_zjmbsd1.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i60" name="ui_panel_zjmbs1.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i61" name="ui_panel_zjmanyz.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i62" name="ui_panel_zjmand.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i63" name="ui_panel_jzwc.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i64" name="ui_panel_jzque.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i65" name="ui_panel_jzkjz.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i66" name="ui_panel_jzbq.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i67" name="UI_panel_zjmbsd2.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i68" name="ui_icon_zjmzls.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i69" name="ui_panel_zjmjbzj.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i6a" name="ui_panel_zjmsdhd1.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i6b" name="ui_panel_zjmzls1.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i6c" name="ui_panel_zjmyy3.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i6d" name="ui_panel_zjmyy2.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i6e" name="ui_panel_zjmyy1.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i6f" name="ui_panel_zjmyhk.png" path="/A_新版HUD资源/Z-主界面新/"/>
@@ -43,19 +35,6 @@
     <image id="e16i6r" name="ui_panel_zjmsdhd3.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i6s" name="ui_panel_zjmsdhd2.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i6t" name="ui_panel_zjmxkd.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i6u" name="ui_panel_zjmzls2.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i6v" name="ui_icon_zjmyy.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i6w" name="ui_icon_zjmxc.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i6x" name="en_btn_zjmysj.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i6y" name="en_btn_zjmjy.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i6z" name="en_btn_zjmjichu.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i70" name="en_btn_zjmjc.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i71" name="ar_btn_zjmzdztz.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i72" name="ar_btn_zjmysj.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i73" name="ar_btn_zjmjy.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i74" name="ar_btn_zjmjichu.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i75" name="en_btn_zjmzdztz.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i76" name="ar_btn_zjmjc.png" path="/A_新版HUD资源/Z-主界面新/"/>
     <image id="e16i77" name="UI_panel_zjmdj03.png" path="/A_新版HUD资源/C-车站/"/>
     <image id="e16i78" name="UI_panel_zjmdj02.png" path="/A_新版HUD资源/C-车站/"/>
     <image id="e16i79" name="UI_panel_zjmdj01.png" path="/A_新版HUD资源/C-车站/"/>
@@ -65,29 +44,6 @@
     <image id="e16i7d" name="en_hud_bankRobberyNormalTitle.png" path="/A_新版HUD资源/C-车站/"/>
     <image id="e16i7e" name="en_bankRobberySuperTitle.png" path="/A_新版HUD资源/C-车站/"/>
     <image id="e16i7f" name="UI_panel_zjmdj04.png" path="/A_新版HUD资源/C-车站/"/>
-    <image id="e16i7g" name="ui_icon_zjmyd.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7h" name="ui_btn_zjmbsb1.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7i" name="ui_btn_zjmbsb3.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7j" name="ui_icon_zjmsz.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7k" name="ui_icon_zjmsdhd.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7l" name="ui_icon_zjmrw4.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7m" name="ui_icon_zjmrw3.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7n" name="ui_icon_zjmrw2.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7o" name="ui_icon_zjmrw1.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7p" name="ui_icon_zjmjz.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7q" name="ui_icon_zjmhy.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7r" name="ui_btn_zjmbsb2.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7s" name="ui_icon_zjmhh.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7t" name="ui_icon_scen.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7u" name="ui_icon_scar.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7v" name="ui_btn_zjmzdztzd.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7w" name="ui_btn_zjmysjd.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7x" name="ui_btn_zjmxx.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7y" name="ui_btn_zjmjyd.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i7z" name="ui_btn_zjmjichud.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i80" name="ui_btn_zjmjcd.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i81" name="ui_icon_zjmhdjc.png" path="/A_新版HUD资源/Z-主界面新/"/>
-    <image id="e16i82" name="ui_panel_zjmzls3.png" path="/A_新版HUD资源/Z-主界面新/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

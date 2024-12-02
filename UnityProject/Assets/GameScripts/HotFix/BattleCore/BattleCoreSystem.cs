@@ -1,4 +1,5 @@
 using TEngine;
+using Unity.Entities;
 using UnityEngine;
 
 namespace BattleCore
@@ -19,7 +20,16 @@ namespace BattleCore
 
         public void Init()
         {
+            InitWorld();
             LoadScene("Abasi");   
+        }
+
+        private void InitWorld()
+        {
+            if (World.DefaultGameObjectInjectionWorld == null)
+            {
+                DefaultWorldInitialization.Initialize("Default World", false);
+            }
         }
     }
 }

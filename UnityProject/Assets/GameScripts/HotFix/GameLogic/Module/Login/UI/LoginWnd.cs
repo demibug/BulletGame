@@ -46,11 +46,11 @@ namespace GameLogic
 
         public override void OnCreate()
         {
-            TestProgressWgt tpw = CreateWidgetFromGComp<TestProgressWgt>(this.m_view.progress);
+            // TestProgressWgt tpw = CreateWidgetFromGComp<TestProgressWgt>(this.m_view.progress);
 
-            tpw.View.value = 90;
-            tpw.View.max = 100;
-            tpw.View.txtTitle.text = "8880";
+            // tpw.View.value = 90;
+            // tpw.View.max = 100;
+            // tpw.View.txtTitle.text = "8880";
 
             FUIExtension.SetFuiTexture(m_view.imgBg, "AssetLoad/ImageBg/loading_bg", false, "", true);
             // FUIExtension.SetFuiTexture(m_view.imgLoginBg, "login_bg");

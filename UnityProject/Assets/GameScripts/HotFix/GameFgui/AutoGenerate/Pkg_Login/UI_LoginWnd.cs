@@ -21,7 +21,6 @@ namespace Pkg_Login
         public GTextInput txtServerInput;
         public GTextInput txtUserInput;
         public GTextField txtVersion;
-        public GProgressBar progress;
         public const string URL = "ui://y3d6pccbjjos0";
 
         public static UI_LoginWnd CreateInstance()
@@ -59,7 +58,6 @@ namespace Pkg_Login
             txtServerInput = (GTextInput)rootComp?.GetChildAt(7);
             txtUserInput = (GTextInput)rootComp?.GetChildAt(8);
             txtVersion = (GTextField)rootComp?.GetChildAt(9);
-            progress = (GProgressBar)rootComp?.GetChildAt(10);
         }
 
         public override void ConstructFromXML(XML xml)

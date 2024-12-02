@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using GameScene;
 using TEngine;
 using UnityEngine;
 
@@ -8,6 +7,7 @@ namespace BattleCore
     public partial class BattleCoreSystem : BehaviourSingleton<BattleCoreSystem>
     {
         private string m_sceneRes;
+
         public void LoadScene(string res)
         {
             m_sceneRes = res;
@@ -16,7 +16,7 @@ namespace BattleCore
 
         private void DoLoadScene()
         {
-            GameScene.SceneSystem.Instance.LoadScene(m_sceneRes, OnLoadscene);
+            SceneSystem.Instance.LoadScene(m_sceneRes, OnLoadscene);
         }
 
         private void OnLoadscene(string scene, bool complete)
@@ -25,10 +25,9 @@ namespace BattleCore
             {
                 Log.Error("Load scene fail : " + scene);
             }
-            
+
             SceneRoot = GameObject.Find("scene_root");
             TestSystem.Instance.Init();
         }
     }
 }
-

@@ -1,5 +1,7 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
+using FairyGUI;
+
 namespace Pkg_Common
 {
     public class Pkg_CommonBinder

@@ -1,7 +1,7 @@
-﻿using Unity.Entities;
-using UnityEngine;
-using GPUECSAnimationBaker.Engine.AnimatorSystem;
+﻿using GPUECSAnimationBaker.Engine.AnimatorSystem;
+using Unity.Entities;
 using Unity.Mathematics;
+using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
 namespace BattleCore

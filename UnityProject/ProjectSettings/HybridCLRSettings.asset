@@ -19,6 +19,13 @@ MonoBehaviour:
   hotUpdateAssemblyDefinitions:
   - {fileID: 5897886265953266890, guid: cbb0d51b565003841ae81cdbaf747114, type: 3}
   - {fileID: 5897886265953266890, guid: 8f58f15387c7a6f4fad9857024eb47f7, type: 3}
+  - {fileID: 5897886265953266890, guid: e06eb3882bd08c849b11428f630737c1, type: 3}
+  - {fileID: 5897886265953266890, guid: 72bdc451db884c846b5376d9763ca4bf, type: 3}
+  - {fileID: 5897886265953266890, guid: be7c503b1557af441be7307097afdebe, type: 3}
+  - {fileID: 5897886265953266890, guid: fd26886bff18cb64d8d5acf14f5f28d9, type: 3}
+  - {fileID: 5897886265953266890, guid: 39f4522107d3be244974f7ca4c807141, type: 3}
+  - {fileID: 5897886265953266890, guid: 6fceba96ecc34d34bb88e7c795c2b21e, type: 3}
+  - {fileID: 5897886265953266890, guid: af3ba0aedb7df2a45b1c4d476d1f6a56, type: 3}
   - {fileID: 5897886265953266890, guid: 6e76b07590314a543b982daed6af2509, type: 3}
   hotUpdateAssemblies: []
   preserveHotUpdateAssemblies: []

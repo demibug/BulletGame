@@ -176,11 +176,12 @@ namespace GameData
         {
             switch (language)
             {
+                case Language.CN: return FUIBranch.Chinese;
                 case Language.AR: return FUIBranch.Arabic;
                 case Language.EN: return FUIBranch.English;
             }
 
-            return FUIBranch.Arabic;
+            return FUIBranch.Chinese;
         }
 
         /// <summary>

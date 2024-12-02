@@ -83,6 +83,13 @@ MonoBehaviour:
     HotUpdateAssemblies:
     - GameBase.dll
     - GameProto.dll
+    - GameData.dll
+    - GameNetwork.dll
+    - GameRes.dll
+    - GameAudio.dll
+    - GameFgui.dll
+    - GameScene.dll
+    - PlayCore.dll
     - GameLogic.dll
     AOTMetaAssemblies:
     - mscorlib.dll

@@ -1,9 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
-using TEngine;
+﻿using TEngine;
 using Unity.Entities;
 using Unity.Mathematics;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace BattleCore
 {
@@ -25,10 +22,21 @@ namespace BattleCore
 
         public override void Update()
         {
-            if (World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(
-                    typeof(ManSpawnerUpdateComponent)).CalculateEntityCount() == 0)
+            if (World.DefaultGameObjectInjectionWorld == null)
             {
+                Log.Error("World.DefaultGameObjectInjectionWorld is null");
                 return;
+            }
+            else
+            {
+                var entityQuery = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(
+                    typeof(ManSpawnerUpdateComponent));
+                
+                if (entityQuery.CalculateEntityCount() == 0)
+                {
+                    Log.Error("entityQuery CalculateEntityCount is 0");
+                    return;
+                }
             }
 
             if (!isCall)

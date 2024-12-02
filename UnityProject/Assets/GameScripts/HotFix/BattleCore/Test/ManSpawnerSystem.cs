@@ -78,11 +78,11 @@ namespace BattleCore
                         {
                             newManSpawnerAnimators.Add(new ManSpawnerAnimatorBufferElement()
                             {
-                                gpuEcsAnimator = CreateNewAnimator(ref manSpawnerUpdate, manSpawner, sortKey, 
+                                gpuEcsAnimator = CreateNewAnimator(ref manSpawnerUpdate, manSpawner, sortKey,
                                     pos, xOffset, zOffset, manSpawnerAnimatorPrefabs)
                             });
                         }
-                    
+
                         ecb.SetComponent<ManSpawnerComponent>(sortKey, manSpawnerEntity, new ManSpawnerComponent()
                         {
                             needSpawn = manSpawnerUpdate.needSpawn,
@@ -107,9 +107,9 @@ namespace BattleCore
                 // Preserve the scale that was set in the prefab
                 ecb.SetComponent(sortKey, gpuEcsAnimator, new LocalTransform()
                 {
-                    Position = pos + new float3( manSpawnerUpdate.random.NextFloat(xOffset.x, xOffset.y), 
+                    Position = pos + new float3(manSpawnerUpdate.random.NextFloat(xOffset.x, xOffset.y),
                         0, manSpawnerUpdate.random.NextFloat(zOffset.x, zOffset.y)
-                        ),
+                    ),
                     Rotation = Quaternion.identity,
                     Scale = localTransformLookup[gpuEcsAnimatorPrefab].Scale
                 });

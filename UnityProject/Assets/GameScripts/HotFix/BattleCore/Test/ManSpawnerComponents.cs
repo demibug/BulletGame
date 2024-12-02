@@ -29,5 +29,5 @@ namespace BattleCore
     {
         public Entity gpuEcsAnimator;
     }
-    
 }
+    
