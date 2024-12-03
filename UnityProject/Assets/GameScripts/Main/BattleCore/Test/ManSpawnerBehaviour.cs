@@ -1,4 +1,5 @@
 ﻿using GPUECSAnimationBaker.Engine.AnimatorSystem;
+using TEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -15,7 +16,9 @@ namespace BattleMain
     {
         public override void Bake(ManSpawnerBehaviour authoring)
         {
+            Log.Warning("Bake");
             Entity entity = GetEntity(TransformUsageFlags.None);
+            Log.Warning("entity is " + entity);
             AddComponent(entity, new ManSpawnerComponent()
             {
                 needSpawn = false,

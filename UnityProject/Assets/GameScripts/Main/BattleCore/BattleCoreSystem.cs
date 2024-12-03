@@ -9,7 +9,9 @@ namespace BattleMain
         {
             if (World.DefaultGameObjectInjectionWorld == null)
             {
-                DefaultWorldInitialization.Initialize("Default World", false);
+                // DefaultWorldInitialization.Initialize("Default World", false);
+                // var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+                // var tempEntity = entityManager.CreateEntity();
             }
         }
     }
